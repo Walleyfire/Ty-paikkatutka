@@ -25,22 +25,15 @@ lähettää työnantajan sivulla.
 Erillisiä Python-kirjastoja ei tarvitse asentaa. Ohjelma käyttää vain Pythonin
 mukana tulevia osia.
 
-## Päivitys versiosta 1.2–1.5.6
+## Ensimmäinen julkinen julkaisu
 
-1. Sulje Työpaikkatutka tai vanha työnhakuohjelma.
-2. Pura version 1.6.1 ZIP-tiedoston sisältö nykyiseen ohjelmakansioon.
-3. Hyväksy ohjelmatiedostojen korvaaminen.
-4. Kaksoisnapsauta `ASENNA.bat`.
+Versio **1.6.1** on Työpaikkatutkan ensimmäinen julkisesti saatavilla oleva
+versio. Aiemmat versionumerot olivat vain sisäisiä kehitysversioita, eikä niistä
+ole julkaistu ladattavia paketteja.
 
-Päivityspaketti ei sisällä `config.json`- eikä `data/jobs.db`-tiedostoa, joten
-omat asetukset ja kirjattu hakuhistoria eivät ylikirjoitu. Ensimmäisellä
-käynnistyksellä ohjelma tekee vanhasta tietokannasta ja asetustiedostosta
-automaattisesti kopion `varmuuskopiot`-kansioon, jos asetusrakennetta
-päivitetään. Vanhat **Haettu**-merkinnät säilyvät.
-
-Version 1.4.3 mukana tuleva `job_agent.py` on pieni yhteensopivuuskäynnistin.
-Sen ansiosta myös vanhaan ohjelmatiedostoon osoittava pikakuvake käynnistää
-Työpaikkatutkan.
+Julkaisupaketti ei sisällä käyttäjän `config.json`-tiedostoa eikä
+`data/jobs.db`-tietokantaa. Ne luodaan paikallisesti ohjelman käytön aikana,
+eikä niitä pidä lisätä GitHub-repositoryyn.
 
 ## Mitä käyttöliittymän painikkeet tekevät?
 
@@ -107,8 +100,15 @@ Versiossa 1.6.1 ovat mukana Posti, Lassila & Tikanoja, SOL, ISS, S-ryhmä,
 StaffPoint, WorkPower, Duunitori, Jobly, Laura.fi, Kuntarekry, Helsinki Rekry,
 Valtiolle.fi, Bolt.Works, Seure, Kesko, Palmia, Vantti, Eezy, Manpower,
 Bondata, Amiko, Worker ja RTK-Henkilöstöpalvelu. Kuusi viimeksi mainittua
-uutta lähdettä ovat päivityksen jälkeen oletuksena pois käytöstä, kunnes
-käyttäjä valitsee ne asetuksista. Baronan omat lähteet on poistettu kokonaan.
+lähdettä ovat ensimmäisessä asennuksessa oletuksena pois käytöstä, kunnes
+käyttäjä valitsee ne asetuksista.
+
+**Baronan omat työpaikkasivut on jätetty kokonaan pois.** Sivusto palauttaa
+automaattiselle haulle HTTP 403 -vastauksen ja vaatii selaimessa suoritettavan
+Cloudflare-/bottitarkistuksen. Työpaikkatutka ei yritä kiertää sivuston
+suojausta, joten Baronan ilmoituksia ei voida hakea luotettavasti suoraan sen
+omilta sivuilta. Baronan työpaikka voi silti löytyä jonkin mukana olevan
+yleisen työpaikkapalvelun kautta.
 
 Duunitori hakee varasto-, siivous-, tuotanto-, pihatyö- ja
 myymälätyöntekijähakuja pääkaupunkiseudulta. Jobly tarkistaa vastaavat
@@ -128,19 +128,85 @@ Työmarkkinatorin hakurajapinnan käyttö vaatii erillisen yritystunnukseen
 sidotun käyttöoikeuden, joten sitä ei voi ottaa käyttöön tavallisena julkisena
 automaattihakuna ilman rajapintasopimusta.
 
-## Version 1.6.1 muutokset
+## Uuden yrityksen lisääminen
 
-- Korjattu Eezy käyttämään sen avoimien työpaikkojen sivun julkista
-  työpaikkahakua toimimattoman `sitemap.xml`-osoitteen sijaan.
-- Eezyltä luetaan yhdellä haulla tehtävän nimi, yritys, sijainnit, kuvaus sekä
-  haun alkamis- ja päättymisaika.
-- Vanha Eezy-lähde korjataan käynnistyksessä automaattisesti. Lähteen
-  käytössä/pois-valinta, tietokanta ja **Haettu**-merkinnät säilyvät.
-- Lisätty omistusoikeudellinen `LICENSE`, jossa kaikki oikeudet pidätetään.
-- Lisätty `NOTICE.md`, jossa mainitaan Tilastokeskuksen kunta- ja
+Lisää `sources`-listaan esimerkiksi:
+
+```json
+{
+  "name": "Yrityksen nimi",
+  "type": "html",
+  "url": "https://yritys.fi/avoimet-tyopaikat",
+  "link_patterns": [
+    "yritys\\.fi/avoimet-tyopaikat/.+"
+  ],
+  "exclude_titles": [
+    "avoin hakemus"
+  ],
+  "enabled": true
+}
+```
+
+`link_patterns` käyttää säännöllisiä lausekkeita. Jos sivu muuttuu tai lataa
+paikat vain JavaScriptillä, tavallinen HTML-haku ei välttämättä näe niitä.
+Ohjelma jatkaa muiden lähteiden tarkistamista ja näyttää virheen lokissa.
+
+## Versio 1.6.1 – ensimmäinen julkinen julkaisu
+
+Versio 1.6.1 sisältää Työpaikkatutkan kaikki ensimmäisen julkisen julkaisun
+ominaisuudet:
+
+- Työpaikkailmoituksia haetaan 24 valittavasta suomalaisesta yritys- ja
+  työpaikkalähteestä.
+- Työpaikkalähteitä voi suodattaa tehtäväalan mukaan ja ottaa näkyvän ryhmän
+  käyttöön tai pois käytöstä yhdellä painikkeella.
+- Eezy käyttää sen avoimien työpaikkojen sivun julkista työpaikkahakua.
+  Ilmoituksesta luetaan tehtävä, yritys, sijainnit, kuvaus sekä haun alkamis- ja
+  päättymisaika.
+- Baronan omat sivut on jätetty pois niiden HTTP 403 -eston ja
+  Cloudflare-/bottitarkistuksen vuoksi. Työpaikkatutka ei kierrä sivustojen
+  suojauksia.
+- Ilmoitukset pisteytetään kiinnostavien työtehtävien, sijaintien, vahvuuksien,
+  pätevyyksien, korttien ja poissulkevien ilmausten perusteella.
+- Sijaintitunnistus kattaa kaikki Suomen 308 kuntaa ja 19 maakuntaa.
+  Maakunnan valinta kattaa automaattisesti sen kunnat, ja valittavana on myös
+  **Koko Suomi**.
+- Sijainteja voi hakea kirjoittamalla, valita ehdotuksista tai lisätä omana
+  sijaintina.
+- Kiinnostavien työtehtävien valikossa on 481 Suomessa käytössä olevaa
+  TK10-ammattiluokkaa. Oman tehtävänimikkeen voi lisätä luettelon ulkopuolelta.
+- Vahvuuksien haettavassa valikossa on yli 120 vaihtoehtoa. Myös omat
+  vahvuudet ja poissulkevat ilmaukset voi lisätä.
+- Graafisessa asetussivussa ovat erilliset **Profiili**, **Haku**,
+  **Pätevyydet ja kortit** sekä **Työpaikkalähteet** -välilehdet.
+- Käyttöliittymä seuraa Windowsin vaaleaa tai tummaa teemaa. Myös ikkunan
+  yläpalkki, painikkeet, taulukko, valitsimet ja tutka–suurennuslasi-kuvake on
+  sovitettu samaan teemaan.
+- Sama työpaikka yhdistetään yhdeksi ilmoitukseksi yrityksen,
+  tehtävänimikkeen ja sijainnin perusteella. Kaikki löydetyt lähdeosoitteet
+  säilyvät **Lähdelinkit**-näkymässä.
+- SQLite-tietokanta säilyttää hakuhistorian sekä **Haettu**, **Poistettu** ja
+  **Uudelleen julkaistu** -tilat.
+- Päättyneet haut näkyvät punaisina, kunnes käyttäjä poistaa ne itse.
+  Uudella hakuajalla julkaistu sama ilmoitus tunnistetaan uudelleen julkaistuksi.
+- Työpaikat voi järjestää pisteiden tai hakuajan mukaan. Hakuajasta näytetään
+  vain päivämäärä muodossa `pp.kk.vvvv`.
+- Tarkistuksen voi käynnistää käsin tai ajastaa suoritettavaksi päivittäin
+  Windowsin Tehtävien ajoituksella.
+- Työpaikkatutka ei lähetä hakemuksia tai sähköpostia automaattisesti.
+  Hakemuksen lähettäminen jää aina käyttäjän omaksi päätökseksi.
+- Julkaisupaketti ei sisällä käyttäjän `config.json`-tiedostoa,
+  `data/jobs.db`-tietokantaa, lokitiedostoja tai raportteja.
+- Mukana on omistusoikeudellinen `LICENSE`, jossa kaikki oikeudet pidätetään,
+  sekä `NOTICE.md`, jossa mainitaan Tilastokeskuksen kunta- ja
   ammattiluokitusaineistojen CC BY 4.0 -lisenssi ja lähteet.
 
-## Version 1.6.0 muutokset
+## Julkaisua edeltänyt kehityshistoria
+
+Seuraavat versionumerot olivat sisäisiä kehitysversioita. Niitä ei ole
+julkaistu tai tarjottu ladattaviksi.
+
+### Sisäinen versio 1.6.0
 
 - Työpaikkalähteitä on nyt 24.
 - Uusina valittavina lähteinä ovat Eezy, Manpower, Bondata, Amiko, Worker ja
@@ -156,7 +222,7 @@ automaattihakuna ilman rajapintasopimusta.
   vanhaan `config.json`-tiedostoon.
 - Nykyiset lähdevalinnat, profiili, tietokanta ja **Haettu**-merkinnät säilyvät.
 
-## Version 1.5.6 muutokset
+### Sisäinen versio 1.5.6
 
 - Hiiren rulla vierittää valintalistaa ilman, että Asetukset-sivu liikkuu
   samalla taustalla.
@@ -164,14 +230,14 @@ automaattihakuna ilman rajapintasopimusta.
 - Korjaus koskee Profiili-sivun kaikkia viittä valintalistaa, niiden
   vierityspalkkeja ja kirjoitettaessa näkyviä ehdotuslistoja.
 
-## Version 1.5.5 muutokset
+### Sisäinen versio 1.5.5
 
 - Kaikkien profiilivalitsinten valittujen arvojen listaa on kasvatettu
   alaspäin kahdella rivillä.
 - Jokaisessa listassa näkyy nyt kahdeksan riviä aiemman kuuden sijaan.
 - Ehdotuslistan ja kirjoituskentän toiminta säilyy ennallaan.
 
-## Version 1.5.4 muutokset
+### Sisäinen versio 1.5.4
 
 - Korjattu virhe, jossa automaattisesti avautuva ehdotusvalikko vei
   kirjoituskohdistuksen jo ensimmäisen kirjaimen jälkeen.
@@ -182,7 +248,7 @@ automaattihakuna ilman rajapintasopimusta.
   korkuisia ja yhdenmukaisesti aseteltuja.
 - Nykyiset asetukset, omat arvot ja valinnat säilyvät päivityksessä.
 
-## Version 1.5.3 muutokset
+### Sisäinen versio 1.5.3
 
 - **Poissulkevat ilmaukset** on muutettu samanlaiseksi haettavaksi
   lisäysvalikoksi kuin sijainnit, työtehtävät ja vahvuudet.
@@ -194,7 +260,7 @@ automaattihakuna ilman rajapintasopimusta.
   tai Enterillä.
 - Aiemmin valitut ja itse lisätyt poissulkevat ilmaukset säilyvät päivityksessä.
 
-## Version 1.5.2 muutokset
+### Sisäinen versio 1.5.2
 
 - **Kiinnostavat työtehtävät** on muutettu samanlaiseksi haettavaksi
   valitsimeksi kuin sijainnit ja vahvuudet.
@@ -211,7 +277,7 @@ automaattihakuna ilman rajapintasopimusta.
   `Varastonhoitaja`-ilmoituksen.
 - Aiemmin valitut kiinnostavat työtehtävät säilyvät päivityksessä.
 
-## Version 1.5.1 muutokset
+### Sisäinen versio 1.5.1
 
 - Kuntaa tai maakuntaa kirjoitettaessa sopivat vaihtoehdot avautuvat heti
   näkyviin. Esimerkiksi `vant` näyttää valinnan `Vantaa — kunta`.
@@ -222,7 +288,7 @@ automaattihakuna ilman rajapintasopimusta.
   Luettelon ulkopuolisen oman vahvuuden voi edelleen kirjoittaa ja lisätä.
 - Aiemmin valitut sijainnit ja vahvuudet säilyvät päivityksessä.
 
-## Version 1.5.0 muutokset
+### Sisäinen versio 1.5.0
 
 - Sijaintitunnistus kattaa kaikki Suomen 308 kuntaa ja 19 maakuntaa vuoden
   2026 virallisen aluejaon mukaan.
@@ -239,7 +305,7 @@ automaattihakuna ilman rajapintasopimusta.
   `Helsingissä` ja `Rovaniemellä`.
 - Tietokanta, asetukset ja kaikki työpaikkojen tilat säilyvät.
 
-## Version 1.4.7 muutokset
+### Sisäinen versio 1.4.7
 
 - **Haku päättyy** -otsikon kirjoitusasu on yhtenäistetty koko sovelluksessa.
 - Hakuajan sarakkeessa näytetään vain päivä, kuukausi ja vuosi muodossa
@@ -248,7 +314,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Päivämäärälajittelu käyttää edelleen alkuperäistä tallennettua arvoa.
 - Tietokanta, asetukset ja kaikki työpaikkojen tilat säilyvät.
 
-## Version 1.4.6 muutokset
+### Sisäinen versio 1.4.6
 
 - Profiilista on poistettu nimi, puhelinnumero, sähköposti, portfolio ja
   kotikaupunki. Työpaikkatutka ei tarvitse niitä työpaikkojen keräämiseen.
@@ -261,7 +327,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Ennen asetusten päivitystä tehdään automaattinen varmuuskopio.
 - Tietokanta ja kaikki työpaikkojen tilat säilyvät.
 
-## Version 1.4.5 muutokset
+### Sisäinen versio 1.4.5
 
 - Asetusten valittu välilehti näkyy nyt muita suurempana; valitsemattomat
   välilehdet ovat pienempiä ja niiden välissä on selkeät raot.
@@ -274,7 +340,7 @@ automaattihakuna ilman rajapintasopimusta.
   muistutetaan tallentamaan ennen sivun sulkemista.
 - Tietokanta, asetukset ja kaikki työpaikkojen tilat säilyvät.
 
-## Version 1.4.4 muutokset
+### Sisäinen versio 1.4.4
 
 - Korjattu tutkaikonin puuttuminen sovelluksen omasta Windows-yläpalkista.
 - Pieni 16×16- ja suuri 32×32-kuvake asetetaan nyt suoraan Windows-ikkunalle
@@ -283,7 +349,7 @@ automaattihakuna ilman rajapintasopimusta.
   tukemassa BMP/DIB-muodossa.
 - Työpöytäpikakuvake, tietokanta, asetukset ja työpaikkojen tilat säilyvät.
 
-## Version 1.4.3 muutokset
+### Sisäinen versio 1.4.3
 
 - Korjattu version 1.4.2 tiedostonimen vaihdon rikkoma vanha pikakuvake.
 - `job_agent.py` toimii nyt yhteensopivuuskäynnistimenä ja avaa
@@ -293,7 +359,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Pikakuvakkeen voi luoda uudelleen tiedostolla `LUO_PIKAKUVAKE.bat`.
 - Nykyinen tietokanta, asetukset ja kaikki työpaikkojen tilat säilyvät.
 
-## Version 1.4.2 muutokset
+### Sisäinen versio 1.4.2
 
 - Sovelluksen nimi on nyt **Työpaikkatutka**. Käyttäjän nimi tai agentti-sana
   eivät enää näy sovelluksen nimessä.
@@ -305,7 +371,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Nykyinen `config.json`, `data/jobs.db`, hakuhistoria sekä **Haettu**,
   **Poistettu** ja **Uudelleen julkaistu** -tilat säilyvät.
 
-## Version 1.4.1 muutokset
+### Sisäinen versio 1.4.1
 
 - Sähköpostikooste, SMTP-asetukset, sovellussalasana ja **Sähköposti**-
   välilehti on poistettu.
@@ -318,7 +384,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Nykyinen tietokanta sekä **Haettu**, **Poistettu** ja
   **Uudelleen julkaistu** -tilat säilyvät.
 
-## Version 1.4.0 muutokset
+### Sisäinen versio 1.4.0
 
 - **Avaa asetukset** avaa nyt teemallisen graafisen asetussivun JSON-tiedoston
   sijaan.
@@ -330,7 +396,7 @@ automaattihakuna ilman rajapintasopimusta.
   myös ikkunan ollessa auki.
 - Päivitys ei muuta tietokantaa tai työpaikkojen tiloja.
 
-## Version 1.3.8 muutokset
+### Sisäinen versio 1.3.8
 
 - **Pisteet**-otsikon ensimmäinen klikkaus järjestää eniten pisteitä saaneet
   työpaikat ensin ja seuraava klikkaus vähiten pisteitä saaneet ensin.
@@ -339,7 +405,7 @@ automaattihakuna ilman rajapintasopimusta.
   listan järjestys pysyy yksiselitteisenä.
 - Päivitys ei muuta tietokantaa, asetuksia tai työpaikkojen tiloja.
 
-## Version 1.3.7 muutokset
+### Sisäinen versio 1.3.7
 
 - Taulukon tummaan teemaan jäänyt vaalea sisäreuna on poistettu.
 - **Haku päättyy** -otsikon ensimmäinen klikkaus järjestää aikaisimmin
@@ -350,7 +416,7 @@ automaattihakuna ilman rajapintasopimusta.
   lajittelusuunnissa listan loppuun.
 - Päivitys ei muuta tietokantaa, asetuksia tai työpaikkojen tiloja.
 
-## Version 1.3.6 muutokset
+### Sisäinen versio 1.3.6
 
 - Tumma ulkoasu käyttää nyt portfolion laivastonsinisiä pintoja ja syaaneja
   korostusvärejä.
@@ -361,7 +427,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Vaalea tila käyttää saman sinisyaanin tyylin vaaleaa vastinetta.
 - Päivitys ei muuta tietokantaa, asetuksia tai työpaikkojen tiloja.
 
-## Version 1.3.5 muutokset
+### Sisäinen versio 1.3.5
 
 - Sovellus seuraa automaattisesti Windowsin sovellustilaa ja käyttää sen
   mukaista vaaleaa tai tummaa ulkoasua.
@@ -371,7 +437,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Päivitys ei muuta tietokantaa, hakuhistoriaa eikä **Haettu**, **Poistettu** tai
   **Uudelleen julkaistu** -tiloja.
 
-## Version 1.3.4 muutokset
+### Sisäinen versio 1.3.4
 
 - Hakemusluonnos-toiminto ja sen painike on poistettu kokonaan.
 - Ohjelma ei enää luo uusia `hakemus_*.txt`-tiedostoja.
@@ -381,7 +447,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Nykyinen tietokanta sekä **Haettu**, **Poistettu** ja
   **Uudelleen julkaistu** -tilat säilyvät.
 
-## Version 1.3.3 muutokset
+### Sisäinen versio 1.3.3
 
 - Jos aiemmin päättynyt ilmoitus saa uuden voimassa olevan hakuajan, se
   palautetaan listaan tilassa **Uudelleen julkaistu** ja käsitellään uutena.
@@ -391,7 +457,7 @@ automaattihakuna ilman rajapintasopimusta.
 - Päivityksen asentaminen ei muuta tietokannan nykyisiä rivejä tai tiloja.
   **Haettu**-merkinnät säilyvät.
 
-## Version 1.3.2 muutokset
+### Sisäinen versio 1.3.2
 
 - Päättyneen hakuajan työpaikat säilyvät listassa ja näkyvät punaisina.
 - Päättyneitä paikkoja ei käsitellä uusina sopivina työpaikkoina.
@@ -399,7 +465,7 @@ automaattihakuna ilman rajapintasopimusta.
   säilyy myös seuraavissa tarkistuksissa.
 - Vanha tietokanta ja kaikki **Haettu**-merkinnät säilyvät päivityksessä.
 
-## Version 1.3.1 muutokset
+### Sisäinen versio 1.3.1
 
 - Korjattu Kuntarekry ja Valtiolle.fi käyttämään toimivia RSS-syötteitä
   puuttuvien `sitemap.xml`-osoitteiden sijaan.
@@ -409,7 +475,7 @@ automaattihakuna ilman rajapintasopimusta.
   Lähteen käytössä/pois-valinta, omat asetukset, tietokanta ja `Haettu`-merkinnät
   säilyvät.
 
-## Version 1.3 muutokset
+### Sisäinen versio 1.3
 
 - Lisätty Laura.fi, Kuntarekry, Helsinki Rekry, Valtiolle.fi, Bolt.Works,
   Seure, Kesko, Palmia ja Vantti.
@@ -421,7 +487,7 @@ automaattihakuna ilman rajapintasopimusta.
   omia yhteystietoja, suodattimia tai lähdevalintoja.
 - Nykyinen tietokanta, hakuhistoria ja **Haettu**-merkinnät säilyvät.
 
-## Version 1.2 muutokset
+### Sisäinen versio 1.2
 
 - Lisätty StaffPoint, WorkPower, Duunitori ja Jobly.
 - Sama ilmoitus yhdistetään yrityksen, tehtävänimikkeen ja paikkakunnan
@@ -436,13 +502,14 @@ automaattihakuna ilman rajapintasopimusta.
 ## Tiedostot
 
 - `tyopaikkatutka.py`: varsinainen ohjelma
-- `job_agent.py`: vanhojen pikakuvakkeiden yhteensopivuuskäynnistin
+- `job_agent.py`: kevyt käynnistin, joka avaa varsinaisen Työpaikkatutkan
 - `LUO_PIKAKUVAKE.bat`: luo Työpaikkatutkan työpöytäpikakuvakkeen uudelleen
 - `assets/tyopaikkatutka.png` ja `assets/tyopaikkatutka.ico`: sovelluskuvakkeet
 - `config.default.json`: uuden asennuksen oletusasetukset
 - `LICENSE`: Työpaikkatutkan omistusoikeudellinen lisenssi
 - `NOTICE.md`: kolmansien osapuolten aineistot ja niiden lisenssit
-- `config.json`: omat asetukset; luodaan asennuksessa eikä kuulu päivitys-ZIPiin
+- `config.json`: omat asetukset; luodaan asennuksessa eikä kuulu
+  julkaisupakettiin
 - `data/jobs.db`: hakuhistoria (syntyy ensimmäisellä ajolla)
 - `raportit/`: HTML-koosteet tarkistusten tuloksista
 - `logs/tyopaikkatutka.log`: tekninen loki

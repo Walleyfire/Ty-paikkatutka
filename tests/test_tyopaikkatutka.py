@@ -289,12 +289,34 @@ class TyopaikkatutkaTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         license_text = (root / "LICENSE").read_text(encoding="utf-8")
         notice_text = (root / "NOTICE.md").read_text(encoding="utf-8")
+        readme_text = (root / "README.md").read_text(encoding="utf-8")
         self.assertIn("Copyright © 2026 Miika Väyrynen", license_text)
         self.assertIn("Kaikki oikeudet pidätetään", license_text)
         self.assertIn("jatkokehittäminen", license_text)
         self.assertIn("Tilastokeskus, CC BY 4.0", notice_text)
         self.assertIn("Kunnat 2026", notice_text)
         self.assertIn("TK10-ammattiluokitus", notice_text)
+        self.assertIn(
+            "Versio **1.6.1** on Työpaikkatutkan ensimmäinen julkisesti "
+            "saatavilla oleva",
+            readme_text,
+        )
+        self.assertNotIn("## Päivitys versiosta", readme_text)
+        self.assertIn(
+            "Baronan omat työpaikkasivut on jätetty kokonaan pois",
+            readme_text,
+        )
+        self.assertIn("HTTP 403", readme_text)
+        self.assertIn("ei yritä kiertää sivuston", readme_text)
+        for release_feature in (
+            "24 valittavasta suomalaisesta",
+            "kaikki Suomen 308 kuntaa ja 19 maakuntaa",
+            "481 Suomessa käytössä olevaa",
+            "yli 120 vaihtoehtoa",
+            "SQLite-tietokanta säilyttää hakuhistorian",
+            "Työpaikkatutka ei lähetä hakemuksia tai sähköpostia automaattisesti",
+        ):
+            self.assertIn(release_feature, readme_text)
 
     def test_branding_and_icon_assets(self):
         self.assertEqual("Työpaikkatutka", tyopaikkatutka.APP_NAME)
