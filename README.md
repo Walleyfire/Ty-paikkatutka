@@ -128,29 +128,6 @@ Työmarkkinatorin hakurajapinnan käyttö vaatii erillisen yritystunnukseen
 sidotun käyttöoikeuden, joten sitä ei voi ottaa käyttöön tavallisena julkisena
 automaattihakuna ilman rajapintasopimusta.
 
-## Uuden yrityksen lisääminen
-
-Lisää `sources`-listaan esimerkiksi:
-
-```json
-{
-  "name": "Yrityksen nimi",
-  "type": "html",
-  "url": "https://yritys.fi/avoimet-tyopaikat",
-  "link_patterns": [
-    "yritys\\.fi/avoimet-tyopaikat/.+"
-  ],
-  "exclude_titles": [
-    "avoin hakemus"
-  ],
-  "enabled": true
-}
-```
-
-`link_patterns` käyttää säännöllisiä lausekkeita. Jos sivu muuttuu tai lataa
-paikat vain JavaScriptillä, tavallinen HTML-haku ei välttämättä näe niitä.
-Ohjelma jatkaa muiden lähteiden tarkistamista ja näyttää virheen lokissa.
-
 ## Version 1.6.1 muutokset
 
 - Korjattu Eezy käyttämään sen avoimien työpaikkojen sivun julkista
