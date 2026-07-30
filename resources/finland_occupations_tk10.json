@@ -1,0 +1,1933 @@
+{
+  "classification": "Tilastokeskus: Tulorekisterin TK10-ammattiluokitus",
+  "classification_id": "ammatti_17_20210101",
+  "valid_from": "2021-01-01",
+  "source": "https://api.stat.fi/classificationservice/open/api/classifications/v2/classifications/ammatti_17_20210101/classificationItems?content=data&format=json&lang=fi&meta=max",
+  "occupation_count": 481,
+  "occupations": [
+    {
+      "code": "01100",
+      "name": "Upseerit"
+    },
+    {
+      "code": "02100",
+      "name": "Aliupseerit"
+    },
+    {
+      "code": "03100",
+      "name": "Sotilasammattihenkilöstö"
+    },
+    {
+      "code": "11110",
+      "name": "Lainsäätäjät"
+    },
+    {
+      "code": "11121",
+      "name": "Valtion keskushallinnon johtajat"
+    },
+    {
+      "code": "11122",
+      "name": "Alue- ja paikallishallinnon johtajat ja ylimmät virkamiehet"
+    },
+    {
+      "code": "11141",
+      "name": "Työmarkkina- ja elinkeinoelämän järjestöjen johtajat"
+    },
+    {
+      "code": "11142",
+      "name": "Muiden järjestöjen johtajat"
+    },
+    {
+      "code": "11200",
+      "name": "Toimitusjohtajat ja pääjohtajat"
+    },
+    {
+      "code": "12110",
+      "name": "Talousjohtajat"
+    },
+    {
+      "code": "12120",
+      "name": "Henkilöstöjohtajat"
+    },
+    {
+      "code": "12130",
+      "name": "Politiikka- ja suunnittelujohtajat"
+    },
+    {
+      "code": "12190",
+      "name": "Muut hallintojohtajat ja kaupalliset johtajat"
+    },
+    {
+      "code": "12210",
+      "name": "Myynti- ja markkinointijohtajat"
+    },
+    {
+      "code": "12220",
+      "name": "Mainos- ja tiedotusjohtajat"
+    },
+    {
+      "code": "12230",
+      "name": "Tutkimus- ja kehitysjohtajat"
+    },
+    {
+      "code": "13110",
+      "name": "Maa- ja metsätalouden johtajat"
+    },
+    {
+      "code": "13120",
+      "name": "Vesiviljely- ja kalatalouden johtajat"
+    },
+    {
+      "code": "13210",
+      "name": "Teollisuuden tuotantojohtajat"
+    },
+    {
+      "code": "13220",
+      "name": "Kaivostoiminnan tuotantojohtajat"
+    },
+    {
+      "code": "13230",
+      "name": "Rakennustoiminnan tuotantojohtajat"
+    },
+    {
+      "code": "13240",
+      "name": "Hankinta- ja jakelujohtajat"
+    },
+    {
+      "code": "13300",
+      "name": "Tieto- ja viestintäteknologiajohtajat"
+    },
+    {
+      "code": "13410",
+      "name": "Lastenhoidon johtajat"
+    },
+    {
+      "code": "13420",
+      "name": "Terveydenhuollon johtajat"
+    },
+    {
+      "code": "13430",
+      "name": "Vanhustenhuollon johtajat"
+    },
+    {
+      "code": "13440",
+      "name": "Sosiaalihuollon johtajat"
+    },
+    {
+      "code": "13450",
+      "name": "Opetusalan johtajat"
+    },
+    {
+      "code": "13460",
+      "name": "Rahoitus- ja vakuutuspalvelujen johtajat"
+    },
+    {
+      "code": "13490",
+      "name": "Muut yhteiskunnan palvelujen johtajat"
+    },
+    {
+      "code": "14110",
+      "name": "Hotellinjohtajat"
+    },
+    {
+      "code": "14120",
+      "name": "Ravintolanjohtajat"
+    },
+    {
+      "code": "14200",
+      "name": "Vähittäis- ja tukkukaupan johtajat"
+    },
+    {
+      "code": "14310",
+      "name": "Urheilu-, vapaa-aika- ja kulttuurikeskusten johtajat"
+    },
+    {
+      "code": "14390",
+      "name": "Muut palvelualojen johtajat"
+    },
+    {
+      "code": "21110",
+      "name": "Fyysikot ja astronomit"
+    },
+    {
+      "code": "21120",
+      "name": "Meteorologit"
+    },
+    {
+      "code": "21130",
+      "name": "Kemistit"
+    },
+    {
+      "code": "21140",
+      "name": "Geologit ja geofyysikot"
+    },
+    {
+      "code": "21200",
+      "name": "Matemaatikot, aktuaarit ja tilastotieteilijät"
+    },
+    {
+      "code": "21310",
+      "name": "Biologit, kasvi- ja eläintieteilijät ym. erityisasiantuntijat"
+    },
+    {
+      "code": "21321",
+      "name": "Maa- ja kalatalouden erityisasiantuntijat"
+    },
+    {
+      "code": "21322",
+      "name": "Metsätalouden erityisasiantuntijat"
+    },
+    {
+      "code": "21330",
+      "name": "Ympäristön- ja luonnonsuojelun erityisasiantuntijat"
+    },
+    {
+      "code": "21410",
+      "name": "Teollisen valmistuksen ja tuotantotekniikan erityisasiantuntijat"
+    },
+    {
+      "code": "21420",
+      "name": "Maa- ja vesirakentamisen erityisasiantuntijat"
+    },
+    {
+      "code": "21430",
+      "name": "Ympäristötekniikan erityisasiantuntijat"
+    },
+    {
+      "code": "21440",
+      "name": "Konetekniikan erityisasiantuntijat"
+    },
+    {
+      "code": "21450",
+      "name": "Puunjalostuksen ja kemian prosessitekniikan erityisasiantuntijat"
+    },
+    {
+      "code": "21460",
+      "name": "Kaivosteollisuuden, metallurgian ym. erityisasiantuntijat"
+    },
+    {
+      "code": "21490",
+      "name": "Muut tekniikan erityisasiantuntijat"
+    },
+    {
+      "code": "21510",
+      "name": "Sähkötekniikan erityisasiantuntijat"
+    },
+    {
+      "code": "21520",
+      "name": "Elektroniikan erityisasiantuntijat"
+    },
+    {
+      "code": "21531",
+      "name": "Tietoliikenneteknologian tutkijat"
+    },
+    {
+      "code": "21532",
+      "name": "Tietotekniikka-alan tutkijat"
+    },
+    {
+      "code": "21610",
+      "name": "Talonrakennuksen arkkitehdit"
+    },
+    {
+      "code": "21620",
+      "name": "Maisema-arkkitehdit"
+    },
+    {
+      "code": "21630",
+      "name": "Tuote- ja vaatesuunnittelijat"
+    },
+    {
+      "code": "21640",
+      "name": "Yhdyskunta- ja liikennesuunnittelijat"
+    },
+    {
+      "code": "21650",
+      "name": "Kartoituksen ja maanmittauksen erityisasiantuntijat"
+    },
+    {
+      "code": "21660",
+      "name": "Graafiset ja multimediasuunnittelijat"
+    },
+    {
+      "code": "22110",
+      "name": "Yleislääkärit"
+    },
+    {
+      "code": "22121",
+      "name": "Ylilääkärit"
+    },
+    {
+      "code": "22122",
+      "name": "Erikoislääkärit"
+    },
+    {
+      "code": "22211",
+      "name": "Ylihoitajat"
+    },
+    {
+      "code": "22212",
+      "name": "Osastonhoitajat"
+    },
+    {
+      "code": "22500",
+      "name": "Eläinlääkärit"
+    },
+    {
+      "code": "22610",
+      "name": "Hammaslääkärit"
+    },
+    {
+      "code": "22620",
+      "name": "Proviisorit"
+    },
+    {
+      "code": "22630",
+      "name": "Ympäristöterveyden ja työsuojelun erityisasiantuntijat"
+    },
+    {
+      "code": "22650",
+      "name": "Ravitsemusalan erityisasiantuntijat"
+    },
+    {
+      "code": "22660",
+      "name": "Kuulontutkijat ja puheterapeutit"
+    },
+    {
+      "code": "22690",
+      "name": "Muut muualla luokittelemattomat terveydenhuollon erityisasiantuntijat"
+    },
+    {
+      "code": "23101",
+      "name": "Professorit"
+    },
+    {
+      "code": "23102",
+      "name": "Lehtorit ja yliassistentit (yliopisto)"
+    },
+    {
+      "code": "23103",
+      "name": "Assistentit ja tuntiopettajat (yliopisto)"
+    },
+    {
+      "code": "23104",
+      "name": "Yliopettajat (AMK)"
+    },
+    {
+      "code": "23105",
+      "name": "Lehtorit (AMK)"
+    },
+    {
+      "code": "23106",
+      "name": "Tuntiopettajat ym. (AMK)"
+    },
+    {
+      "code": "23200",
+      "name": "Ammatillisen koulutuksen opettajat"
+    },
+    {
+      "code": "23301",
+      "name": "Matemaattisten aineiden opettajat"
+    },
+    {
+      "code": "23302",
+      "name": "Äidinkielen ja kirjallisuuden opettajat"
+    },
+    {
+      "code": "23303",
+      "name": "Taito- ja taideaineiden opettajat"
+    },
+    {
+      "code": "23304",
+      "name": "Muut peruskoulun yläluokkien ja lukion opettajat"
+    },
+    {
+      "code": "23411",
+      "name": "Luokanopettajat"
+    },
+    {
+      "code": "23412",
+      "name": "Aineenopettajat (peruskoulun alaluokat)"
+    },
+    {
+      "code": "23420",
+      "name": "Lastentarhanopettajat"
+    },
+    {
+      "code": "23510",
+      "name": "Opetusmenetelmien erityisasiantuntijat"
+    },
+    {
+      "code": "23520",
+      "name": "Erityisopettajat"
+    },
+    {
+      "code": "23530",
+      "name": "Muut kieltenopettajat"
+    },
+    {
+      "code": "23540",
+      "name": "Muut musiikin opettajat"
+    },
+    {
+      "code": "23550",
+      "name": "Muut taideaineiden opettajat"
+    },
+    {
+      "code": "23560",
+      "name": "Muut tietotekniikan opettajat ja kouluttajat"
+    },
+    {
+      "code": "23591",
+      "name": "Opinto-ohjaajat"
+    },
+    {
+      "code": "23592",
+      "name": "Muut opetuksen erityisasiantuntijat"
+    },
+    {
+      "code": "24110",
+      "name": "Laskentatoimen erityisasiantuntijat ja tilintarkastajat"
+    },
+    {
+      "code": "24120",
+      "name": "Rahoitus- ja sijoitusneuvojat"
+    },
+    {
+      "code": "24130",
+      "name": "Rahoitusanalyytikot"
+    },
+    {
+      "code": "24210",
+      "name": "Johtamisen ja organisaatioiden erityisasiantuntijat"
+    },
+    {
+      "code": "24220",
+      "name": "Hallinnon ja elinkeinojen kehittämisen erityisasiantuntijat"
+    },
+    {
+      "code": "24230",
+      "name": "Henkilöstöhallinnon erityisasiantuntijat ja urasuunnittelijat"
+    },
+    {
+      "code": "24240",
+      "name": "Henkilöstön kehittämisen erityisasiantuntijat ja kouluttajat"
+    },
+    {
+      "code": "24310",
+      "name": "Mainonnan ja markkinoinnin erityisasiantuntijat"
+    },
+    {
+      "code": "24320",
+      "name": "Tiedottajat"
+    },
+    {
+      "code": "24330",
+      "name": "Myynti-insinöörit ja lääke-esittelijät (pl. tieto- ja viestintätekniikka)"
+    },
+    {
+      "code": "24340",
+      "name": "Tieto- ja viestintätekniikan myynnin erityisasiantuntijat"
+    },
+    {
+      "code": "25110",
+      "name": "Sovellusarkkitehdit"
+    },
+    {
+      "code": "25120",
+      "name": "Sovellussuunnittelijat"
+    },
+    {
+      "code": "25130",
+      "name": "Web- ja multimediakehittäjät"
+    },
+    {
+      "code": "25140",
+      "name": "Sovellusohjelmoijat"
+    },
+    {
+      "code": "25190",
+      "name": "Muut ohjelmisto- ja sovelluskehittäjät"
+    },
+    {
+      "code": "25210",
+      "name": "Tietokantasuunnittelijat ja -vastaavat"
+    },
+    {
+      "code": "25220",
+      "name": "Tietojärjestelmien ylläpitäjät"
+    },
+    {
+      "code": "25230",
+      "name": "Tietoverkkojen erityisasiantuntijat"
+    },
+    {
+      "code": "25290",
+      "name": "Muut tietokanta- ja tietoverkkojen erityisasiantuntijat"
+    },
+    {
+      "code": "26110",
+      "name": "Asianajajat"
+    },
+    {
+      "code": "26120",
+      "name": "Tuomioistuinlakimiehet"
+    },
+    {
+      "code": "26190",
+      "name": "Muut lainopilliset erityisasiantuntijat"
+    },
+    {
+      "code": "26211",
+      "name": "Arkistonhoitajat"
+    },
+    {
+      "code": "26212",
+      "name": "Museoalan erityisasiantuntijat"
+    },
+    {
+      "code": "26220",
+      "name": "Kirjastonhoitajat, informaatikot ym."
+    },
+    {
+      "code": "26310",
+      "name": "Ekonomistit"
+    },
+    {
+      "code": "26320",
+      "name": "Yhteiskunta- ja kulttuuritutkijat"
+    },
+    {
+      "code": "26330",
+      "name": "Historioitsijat, politiikan tutkijat ja filosofit"
+    },
+    {
+      "code": "26340",
+      "name": "Psykologit"
+    },
+    {
+      "code": "26351",
+      "name": "Sosiaalityöntekijät ym."
+    },
+    {
+      "code": "26352",
+      "name": "Sosiaalialan suunnittelijat ym."
+    },
+    {
+      "code": "26360",
+      "name": "Papit ym. uskonnollisen elämän erityisasiantuntijat"
+    },
+    {
+      "code": "26410",
+      "name": "Kirjailijat ym."
+    },
+    {
+      "code": "26421",
+      "name": "Toimituspäälliköt ja -sihteerit, ohjelmapäälliköt"
+    },
+    {
+      "code": "26422",
+      "name": "Lehtien yms. toimittajat"
+    },
+    {
+      "code": "26423",
+      "name": "Radio- ja tv-toimittajat"
+    },
+    {
+      "code": "26430",
+      "name": "Kääntäjät, tulkit ja muut kielitieteilijät"
+    },
+    {
+      "code": "26510",
+      "name": "Kuvataiteilijat"
+    },
+    {
+      "code": "26520",
+      "name": "Muusikot, laulajat ja säveltäjät"
+    },
+    {
+      "code": "26530",
+      "name": "Tanssitaiteilijat ja koreografit"
+    },
+    {
+      "code": "26540",
+      "name": "Ohjaajat ja tuottajat"
+    },
+    {
+      "code": "26550",
+      "name": "Näyttelijät"
+    },
+    {
+      "code": "26560",
+      "name": "Juontajat, kuuluttajat ym."
+    },
+    {
+      "code": "26590",
+      "name": "Muut taiteilijat"
+    },
+    {
+      "code": "31110",
+      "name": "Luonnontieteen tekniset asiantuntijat"
+    },
+    {
+      "code": "31121",
+      "name": "Talonrakentamisen asiantuntijat"
+    },
+    {
+      "code": "31122",
+      "name": "Maa- ja vesirakentamisen asiantuntijat"
+    },
+    {
+      "code": "31123",
+      "name": "Kartoituksen ja maanmittauksen asiantuntijat"
+    },
+    {
+      "code": "31130",
+      "name": "Sähkötekniikan asiantuntijat"
+    },
+    {
+      "code": "31140",
+      "name": "Elektroniikan asiantuntijat"
+    },
+    {
+      "code": "31150",
+      "name": "Konetekniikan asiantuntijat"
+    },
+    {
+      "code": "31160",
+      "name": "Kemian prosessitekniikan asiantuntijat"
+    },
+    {
+      "code": "31170",
+      "name": "Kaivosteollisuuden ja metallurgian asiantuntijat"
+    },
+    {
+      "code": "31180",
+      "name": "Tekniset piirtäjät"
+    },
+    {
+      "code": "31190",
+      "name": "Muut fysiikan, kemian ja teknisten alojen asiantuntijat"
+    },
+    {
+      "code": "31210",
+      "name": "Kaivostyönjohtajat"
+    },
+    {
+      "code": "31220",
+      "name": "Teollisuuden työnjohtajat"
+    },
+    {
+      "code": "31230",
+      "name": "Rakennusalan työnjohtajat"
+    },
+    {
+      "code": "31310",
+      "name": "Voimalaitosten prosessinhoitajat"
+    },
+    {
+      "code": "31320",
+      "name": "Jätteenpoltto- ja vedenpuhdistuslaitosten prosessinhoitajat"
+    },
+    {
+      "code": "31330",
+      "name": "Kemianteollisuuden prosessinhoitajat"
+    },
+    {
+      "code": "31340",
+      "name": "Öljy- ja maakaasujalostamon prosessinhoitajat"
+    },
+    {
+      "code": "31350",
+      "name": "Metallien jalostuksen prosessinhoitajat"
+    },
+    {
+      "code": "31390",
+      "name": "Muut prosessinvalvonnan asiantuntijat"
+    },
+    {
+      "code": "31410",
+      "name": "Laborantit ym."
+    },
+    {
+      "code": "31420",
+      "name": "Maa- ja kalatalousteknikot"
+    },
+    {
+      "code": "31430",
+      "name": "Metsätalousteknikot"
+    },
+    {
+      "code": "31510",
+      "name": "Laivojen konepäälliköt ja -mestarit"
+    },
+    {
+      "code": "31521",
+      "name": "Isojen alusten päälliköt ja perämiehet"
+    },
+    {
+      "code": "31522",
+      "name": "Pienten alusten päälliköt"
+    },
+    {
+      "code": "31523",
+      "name": "Satamaliikenteen ohjaajat ja satamakapteenit"
+    },
+    {
+      "code": "31530",
+      "name": "Lentokapteenit ja -perämiehet"
+    },
+    {
+      "code": "31540",
+      "name": "Lennonjohtajat"
+    },
+    {
+      "code": "31550",
+      "name": "Lennonvalvonnan tekniset asiantuntijat"
+    },
+    {
+      "code": "32110",
+      "name": "Lääketieteellisen kuvantamis- ja laitetekniikan asiantuntijat"
+    },
+    {
+      "code": "32120",
+      "name": "Bioanalyytikot (terveydenhuolto)"
+    },
+    {
+      "code": "32130",
+      "name": "Farmaseutit"
+    },
+    {
+      "code": "32141",
+      "name": "Hammasteknikot"
+    },
+    {
+      "code": "32142",
+      "name": "Apuvälineteknikot"
+    },
+    {
+      "code": "32211",
+      "name": "Sairaanhoitajat"
+    },
+    {
+      "code": "32212",
+      "name": "Terveydenhoitajat"
+    },
+    {
+      "code": "32220",
+      "name": "Kätilöt"
+    },
+    {
+      "code": "32300",
+      "name": "Luontais- ja vaihtoehtohoitajat"
+    },
+    {
+      "code": "32400",
+      "name": "Seminologit ym."
+    },
+    {
+      "code": "32510",
+      "name": "Suuhygienistit"
+    },
+    {
+      "code": "32540",
+      "name": "Optikot"
+    },
+    {
+      "code": "32550",
+      "name": "Fysioterapeutit ym."
+    },
+    {
+      "code": "32570",
+      "name": "Terveys- ja työsuojelutarkastajat"
+    },
+    {
+      "code": "32580",
+      "name": "Sairaankuljetuksen ensihoitajat"
+    },
+    {
+      "code": "32591",
+      "name": "Toimintaterapeutit"
+    },
+    {
+      "code": "32592",
+      "name": "Muut terapeutit"
+    },
+    {
+      "code": "33110",
+      "name": "Arvopaperi- ja valuuttakauppiaat"
+    },
+    {
+      "code": "33120",
+      "name": "Luotto- ja laina-asiantuntijat"
+    },
+    {
+      "code": "33130",
+      "name": "Kirjanpidon ja laskentatoimen asiantuntijat"
+    },
+    {
+      "code": "33140",
+      "name": "Tilastointi- ja matematiikka-asiantuntijat"
+    },
+    {
+      "code": "33150",
+      "name": "Arvioitsijat ja vahinkotarkastajat"
+    },
+    {
+      "code": "33210",
+      "name": "Vakuutusalan palvelumyyjät"
+    },
+    {
+      "code": "33220",
+      "name": "Myyntiedustajat"
+    },
+    {
+      "code": "33230",
+      "name": "Sisäänostajat"
+    },
+    {
+      "code": "33240",
+      "name": "Kaupanvälittäjät"
+    },
+    {
+      "code": "33310",
+      "name": "Huolitsijat, tulli- ja laivanselvittäjät"
+    },
+    {
+      "code": "33320",
+      "name": "Konferenssi- ja tapahtumajärjestäjät"
+    },
+    {
+      "code": "33330",
+      "name": "Työnvälittäjät"
+    },
+    {
+      "code": "33341",
+      "name": "Kiinteistönvälittäjät"
+    },
+    {
+      "code": "33342",
+      "name": "Isännöitsijät"
+    },
+    {
+      "code": "33390",
+      "name": "Muut liike-elämän asiantuntijat"
+    },
+    {
+      "code": "33410",
+      "name": "Toimistotyön esimiehet"
+    },
+    {
+      "code": "33420",
+      "name": "Asianajosihteerit"
+    },
+    {
+      "code": "33430",
+      "name": "Johdon sihteerit ja osastosihteerit"
+    },
+    {
+      "code": "33440",
+      "name": "Toimistosihteerit (terveydenhuolto)"
+    },
+    {
+      "code": "33510",
+      "name": "Tulli- ja rajavirkamiehet"
+    },
+    {
+      "code": "33520",
+      "name": "Verovalmistelijat ja -tarkastajat"
+    },
+    {
+      "code": "33530",
+      "name": "Sosiaaliturvaetuuksien käsittelijät"
+    },
+    {
+      "code": "33540",
+      "name": "Lupavirkamiehet"
+    },
+    {
+      "code": "33550",
+      "name": "Komisariot ja ylikonstaapelit"
+    },
+    {
+      "code": "33590",
+      "name": "Muut julkishallinnon valmistelu- ja valvontavirkamiehet"
+    },
+    {
+      "code": "34111",
+      "name": "Oikeudenkäyntiasiamiehet ja ulosottomiehet"
+    },
+    {
+      "code": "34112",
+      "name": "Asiamiehet, toimitsijat ym. järjestöalan asiantuntijat"
+    },
+    {
+      "code": "34113",
+      "name": "Kuluttajaneuvojat ym."
+    },
+    {
+      "code": "34121",
+      "name": "Sosiaalialan ohjaajat"
+    },
+    {
+      "code": "34122",
+      "name": "Nuorisotyön ohjaajat (ei srk.)"
+    },
+    {
+      "code": "34123",
+      "name": "Työn- ja askarteluohjaajat"
+    },
+    {
+      "code": "34131",
+      "name": "Diakonit ja diakonissat"
+    },
+    {
+      "code": "34139",
+      "name": "Muut seurakuntatyöntekijät"
+    },
+    {
+      "code": "34210",
+      "name": "Urheilijat"
+    },
+    {
+      "code": "34220",
+      "name": "Urheiluvalmentajat ja toimitsijat"
+    },
+    {
+      "code": "34230",
+      "name": "Liikunnan ja vapaa-ajan ohjaajat"
+    },
+    {
+      "code": "34310",
+      "name": "Valokuvaajat"
+    },
+    {
+      "code": "34320",
+      "name": "Sisustussuunnittelijat ym."
+    },
+    {
+      "code": "34330",
+      "name": "Gallerioiden, museoiden ja kirjastojen tekniset työntekijät"
+    },
+    {
+      "code": "34340",
+      "name": "Keittiöpäälliköt"
+    },
+    {
+      "code": "34351",
+      "name": "Kuvaussihteerit ja muut näyttämötekniset asiantuntijat"
+    },
+    {
+      "code": "34359",
+      "name": "Muut taide- ja kulttuurialan tekniset asiantuntijat"
+    },
+    {
+      "code": "35110",
+      "name": "Käytön operaattorit"
+    },
+    {
+      "code": "35120",
+      "name": "Käytön tukihenkilöt"
+    },
+    {
+      "code": "35130",
+      "name": "Tietoverkkoteknikot"
+    },
+    {
+      "code": "35140",
+      "name": "Webmasterit ja -teknikot"
+    },
+    {
+      "code": "35210",
+      "name": "Lähetys- ja audiovisuaaliteknikot"
+    },
+    {
+      "code": "35220",
+      "name": "Televiestinnän tekniset asiantuntijat"
+    },
+    {
+      "code": "41100",
+      "name": "Toimistoavustajat"
+    },
+    {
+      "code": "41200",
+      "name": "Yleissihteerit"
+    },
+    {
+      "code": "41310",
+      "name": "Tekstinkäsittelijät"
+    },
+    {
+      "code": "41320",
+      "name": "Tallentajat"
+    },
+    {
+      "code": "42110",
+      "name": "Pankki- ym. toimihenkilöt"
+    },
+    {
+      "code": "42120",
+      "name": "Vedonvälittäjät, bingo- ja kasinopelin hoitajat ym."
+    },
+    {
+      "code": "42130",
+      "name": "Panttilainaajat"
+    },
+    {
+      "code": "42140",
+      "name": "Maksujenperijät"
+    },
+    {
+      "code": "42210",
+      "name": "Matkatoimistovirkailijat"
+    },
+    {
+      "code": "42220",
+      "name": "Puhelinpalveluneuvojat"
+    },
+    {
+      "code": "42230",
+      "name": "Puhelinvaihteenhoitajat"
+    },
+    {
+      "code": "42240",
+      "name": "Hotellin vastaanottovirkailijat"
+    },
+    {
+      "code": "42250",
+      "name": "Informaatiopisteen asiakasneuvojat"
+    },
+    {
+      "code": "42260",
+      "name": "Vastaanoton ja neuvonnan hoitajat"
+    },
+    {
+      "code": "42270",
+      "name": "Tutkimus- ja markkinatutkimushaastattelijat"
+    },
+    {
+      "code": "42291",
+      "name": "Hälytyspäivystäjät"
+    },
+    {
+      "code": "42299",
+      "name": "Muut muualla luokittelemattomat asiakaspalvelutyöntekijät"
+    },
+    {
+      "code": "43110",
+      "name": "Taloushallinnon toimistotyöntekijät"
+    },
+    {
+      "code": "43120",
+      "name": "Tilasto-, rahoitus- ja vakuutusalan toimistotyöntekijät"
+    },
+    {
+      "code": "43130",
+      "name": "Palkanlaskijat"
+    },
+    {
+      "code": "43210",
+      "name": "Varastonhoitajat ym."
+    },
+    {
+      "code": "43220",
+      "name": "Tuotannon valmistelijat"
+    },
+    {
+      "code": "43231",
+      "name": "Raideliikenteen ohjaajat, ajojärjestelijät ym."
+    },
+    {
+      "code": "43239",
+      "name": "Muut kuljetuksen ja huolinnan toimistotyöntekijät"
+    },
+    {
+      "code": "44110",
+      "name": "Kirjastotyöntekijät"
+    },
+    {
+      "code": "44121",
+      "name": "Postinkantajat"
+    },
+    {
+      "code": "44122",
+      "name": "Toimistovahtimestarit"
+    },
+    {
+      "code": "44130",
+      "name": "Koodaajat, oikolukijat ym."
+    },
+    {
+      "code": "44150",
+      "name": "Arkistotyöntekijät"
+    },
+    {
+      "code": "44160",
+      "name": "Henkilöstöhallinnon avustavat toimistotyöntekijät"
+    },
+    {
+      "code": "44190",
+      "name": "Muut muualla luokittelemattomat toimisto- ja asiakaspalvelutyöntekijät"
+    },
+    {
+      "code": "51110",
+      "name": "Lentoemännät, purserit ym."
+    },
+    {
+      "code": "51120",
+      "name": "Konduktöörit, lipuntarkastajat ym."
+    },
+    {
+      "code": "51130",
+      "name": "Matkaoppaat"
+    },
+    {
+      "code": "51201",
+      "name": "Kokit, keittäjät ja kylmäköt"
+    },
+    {
+      "code": "51202",
+      "name": "Ravintolaesimiehet ja vuoropäälliköt"
+    },
+    {
+      "code": "51310",
+      "name": "Tarjoilijat"
+    },
+    {
+      "code": "51320",
+      "name": "Baarimestarit"
+    },
+    {
+      "code": "51410",
+      "name": "Kampaajat ja parturit"
+    },
+    {
+      "code": "51420",
+      "name": "Kosmetologit ym."
+    },
+    {
+      "code": "51510",
+      "name": "Siivoustyön esimiehet toimistoissa, hotelleissa ja muissa laitoksissa"
+    },
+    {
+      "code": "51520",
+      "name": "Yksityiskotien taloudenhoitajat"
+    },
+    {
+      "code": "51530",
+      "name": "Kiinteistöhuollon työntekijät"
+    },
+    {
+      "code": "51610",
+      "name": "Astrologit, ennustajat ym."
+    },
+    {
+      "code": "51631",
+      "name": "Hautaustoimistonhoitajat ym."
+    },
+    {
+      "code": "51632",
+      "name": "Muut hautaustyöntekijät"
+    },
+    {
+      "code": "51640",
+      "name": "Eläintenhoitajat ja lemmikkieläinten trimmaajat"
+    },
+    {
+      "code": "51650",
+      "name": "Ajo-opettajat"
+    },
+    {
+      "code": "51690",
+      "name": "Muualla luokittelemattomat henkilökohtaisen palvelun työntekijät"
+    },
+    {
+      "code": "52110",
+      "name": "Kioski- ja torimyyjät"
+    },
+    {
+      "code": "52120",
+      "name": "Katumyyjät (elintarvikkeet)"
+    },
+    {
+      "code": "52210",
+      "name": "Kauppiaat (pienyrittäjät)"
+    },
+    {
+      "code": "52220",
+      "name": "Myymäläesimiehet"
+    },
+    {
+      "code": "52230",
+      "name": "Myyjät"
+    },
+    {
+      "code": "52300",
+      "name": "Kassanhoitajat ja lipunmyyjät"
+    },
+    {
+      "code": "52410",
+      "name": "Mallit"
+    },
+    {
+      "code": "52420",
+      "name": "Tuote-esittelijät"
+    },
+    {
+      "code": "52430",
+      "name": "Suoramyyjät"
+    },
+    {
+      "code": "52440",
+      "name": "Puhelin- ja asiakaspalvelukeskusten myyjät"
+    },
+    {
+      "code": "52450",
+      "name": "Huoltamotyöntekijät"
+    },
+    {
+      "code": "52460",
+      "name": "Kahvila- ja baarimyyjät"
+    },
+    {
+      "code": "52490",
+      "name": "Muut muualla luokittelemattomat myyntityöntekijät"
+    },
+    {
+      "code": "53111",
+      "name": "Päiväkotien ja muiden laitosten lastenhoitajat ym."
+    },
+    {
+      "code": "53112",
+      "name": "Perhepäivähoitajat"
+    },
+    {
+      "code": "53113",
+      "name": "Lastenkerhojen ohjaajat ym."
+    },
+    {
+      "code": "53120",
+      "name": "Koulunkäyntiavustajat"
+    },
+    {
+      "code": "53211",
+      "name": "Mielenterveyshoitajat"
+    },
+    {
+      "code": "53212",
+      "name": "Kehitysvammaisten hoitajat"
+    },
+    {
+      "code": "53213",
+      "name": "Sosiaalialan hoitajat"
+    },
+    {
+      "code": "53219",
+      "name": "Muut lähihoitajat"
+    },
+    {
+      "code": "53221",
+      "name": "Kotityöpalvelutyöntekijät"
+    },
+    {
+      "code": "53222",
+      "name": "Henkilökohtaiset avustajat, omaishoitajat ym."
+    },
+    {
+      "code": "53291",
+      "name": "Hammashoitajat"
+    },
+    {
+      "code": "53292",
+      "name": "Välinehuoltajat"
+    },
+    {
+      "code": "53293",
+      "name": "Apteekkien lääketyöntekijät"
+    },
+    {
+      "code": "53294",
+      "name": "Hierojat ja kuntohoitajat"
+    },
+    {
+      "code": "54110",
+      "name": "Palomiehet"
+    },
+    {
+      "code": "54120",
+      "name": "Poliisit"
+    },
+    {
+      "code": "54130",
+      "name": "Vanginvartijat"
+    },
+    {
+      "code": "54140",
+      "name": "Vartijat"
+    },
+    {
+      "code": "54190",
+      "name": "Muut suojelu- ja vartiointityöntekijät"
+    },
+    {
+      "code": "61111",
+      "name": "Peltoviljelijät"
+    },
+    {
+      "code": "61112",
+      "name": "Peltoviljelytyönjohtajat ja -työntekijät"
+    },
+    {
+      "code": "61120",
+      "name": "Hedelmäpuiden ja pensaiden yms. kasvattajat"
+    },
+    {
+      "code": "61131",
+      "name": "Puutarhurit ja kasvihuoneviljelijät"
+    },
+    {
+      "code": "61132",
+      "name": "Puutarha- ja kasvihuonetyönjohtajat ja - työntekijät"
+    },
+    {
+      "code": "61140",
+      "name": "Yhdistetyn maan- ja vihannesviljelyn tai puutarhanhoidon ym. harjoittajat"
+    },
+    {
+      "code": "61211",
+      "name": "Karjankasvattajat ym."
+    },
+    {
+      "code": "61212",
+      "name": "Karjanhoitajat ym."
+    },
+    {
+      "code": "61213",
+      "name": "Lemmikkieläinten kasvattajat"
+    },
+    {
+      "code": "61214",
+      "name": "Maatalouslomittajat"
+    },
+    {
+      "code": "61220",
+      "name": "Siipikarjankasvattajat"
+    },
+    {
+      "code": "61230",
+      "name": "Mehiläistenhoitajat ym."
+    },
+    {
+      "code": "61291",
+      "name": "Turkiseläinten ja porojen kasvattajat"
+    },
+    {
+      "code": "61299",
+      "name": "Muualla luokittelemattomat eläintenhoitajat"
+    },
+    {
+      "code": "61300",
+      "name": "Yhdistetyn maanviljelyn ja eläintenkasvatuksen harjoittajat"
+    },
+    {
+      "code": "62100",
+      "name": "Metsurit ja metsätyöntekijät"
+    },
+    {
+      "code": "62211",
+      "name": "Kalanviljely-yrittäjät"
+    },
+    {
+      "code": "62212",
+      "name": "Kalanviljelytyönjohtajat ja -työntekijät"
+    },
+    {
+      "code": "62220",
+      "name": "Kalastajat"
+    },
+    {
+      "code": "62240",
+      "name": "Riistanhoitajat ja metsästäjät"
+    },
+    {
+      "code": "71110",
+      "name": "Talonrakentajat"
+    },
+    {
+      "code": "71120",
+      "name": "Muurarit ym."
+    },
+    {
+      "code": "71130",
+      "name": "Kivenhakkaajat ja -leikkaajat ym."
+    },
+    {
+      "code": "71140",
+      "name": "Betonirakentajat ja raudoittajat"
+    },
+    {
+      "code": "71150",
+      "name": "Kirvesmiehet ja rakennuspuusepät"
+    },
+    {
+      "code": "71190",
+      "name": "Muut rakennustyöntekijät"
+    },
+    {
+      "code": "71210",
+      "name": "Kattoasentajat ja -korjaajat"
+    },
+    {
+      "code": "71220",
+      "name": "Lattianpäällystystyöntekijät"
+    },
+    {
+      "code": "71230",
+      "name": "Rappaajat"
+    },
+    {
+      "code": "71240",
+      "name": "Eristäjät"
+    },
+    {
+      "code": "71250",
+      "name": "Lasinasentajat"
+    },
+    {
+      "code": "71260",
+      "name": "Putkiasentajat"
+    },
+    {
+      "code": "71270",
+      "name": "Ilmastointi- ja jäähdytyslaiteasentajat"
+    },
+    {
+      "code": "71310",
+      "name": "Rakennusmaalarit ym."
+    },
+    {
+      "code": "71320",
+      "name": "Ruiskumaalaajat ja -lakkaajat"
+    },
+    {
+      "code": "71330",
+      "name": "Rakennuspuhdistajat ja nuohoojat"
+    },
+    {
+      "code": "72110",
+      "name": "Muotin- ja keernantekijät"
+    },
+    {
+      "code": "72120",
+      "name": "Hitsaajat ja kaasuleikkaajat"
+    },
+    {
+      "code": "72130",
+      "name": "Ohutlevysepät"
+    },
+    {
+      "code": "72140",
+      "name": "Paksulevysepät ja rautarakennetyöntekijät"
+    },
+    {
+      "code": "72150",
+      "name": "Kaapelin- ja köysienasentajat"
+    },
+    {
+      "code": "72210",
+      "name": "Sepät"
+    },
+    {
+      "code": "72220",
+      "name": "Työkaluntekijät ja lukkosepät"
+    },
+    {
+      "code": "72230",
+      "name": "Koneenasettajat ja koneistajat"
+    },
+    {
+      "code": "72240",
+      "name": "Konehiojat, kiillottajat ja teroittajat"
+    },
+    {
+      "code": "72310",
+      "name": "Moottoriajoneuvojen asentajat ja korjaajat"
+    },
+    {
+      "code": "72320",
+      "name": "Lentokoneasentajat ja -korjaajat"
+    },
+    {
+      "code": "72330",
+      "name": "Maatalous- ja teollisuuskoneasentajat ja -korjaajat"
+    },
+    {
+      "code": "72340",
+      "name": "Polkupyöränkorjaajat ym."
+    },
+    {
+      "code": "73110",
+      "name": "Kellosepät ja muut hienomekaanisten instrumenttien tekijät ja korjaajat"
+    },
+    {
+      "code": "73120",
+      "name": "Soittimien tekijät ja virittäjät"
+    },
+    {
+      "code": "73130",
+      "name": "Koru-, kulta- ja hopeasepät"
+    },
+    {
+      "code": "73140",
+      "name": "Saven- ja tiilenvalajat ja dreijaajat"
+    },
+    {
+      "code": "73150",
+      "name": "Lasinpuhaltajat, -leikkaajat, -hiojat ja -viimeistelijät"
+    },
+    {
+      "code": "73160",
+      "name": "Kaivertajat, etsaajat ja koristemaalarit"
+    },
+    {
+      "code": "73170",
+      "name": "Puu-, kori-  yms. käsityötuotteiden tekijät"
+    },
+    {
+      "code": "73180",
+      "name": "Tekstiili-, nahka- yms. käsityötuotteiden tekijät"
+    },
+    {
+      "code": "73190",
+      "name": "Muut käsityöntekijät"
+    },
+    {
+      "code": "73210",
+      "name": "Painopinnanvalmistajat"
+    },
+    {
+      "code": "73220",
+      "name": "Painajat"
+    },
+    {
+      "code": "73230",
+      "name": "Jälkikäsittelijät ja sitomotyöntekijät"
+    },
+    {
+      "code": "74110",
+      "name": "Rakennussähköasentajat"
+    },
+    {
+      "code": "74120",
+      "name": "Muut sähköasentajat"
+    },
+    {
+      "code": "74130",
+      "name": "Linja-asentajat ja -korjaajat"
+    },
+    {
+      "code": "74211",
+      "name": "Elektroniikka-asentajat ja -korjaajat"
+    },
+    {
+      "code": "74212",
+      "name": "Automaatioasentajat ja -korjaajat"
+    },
+    {
+      "code": "74220",
+      "name": "Tieto- ja viestintäteknologian asentajat ja korjaajat"
+    },
+    {
+      "code": "75110",
+      "name": "Lihanleikkaajat, kalankäsittelijät ym."
+    },
+    {
+      "code": "75120",
+      "name": "Leipurit ja kondiittorit"
+    },
+    {
+      "code": "75130",
+      "name": "Meijeristit, juustomestarit ym."
+    },
+    {
+      "code": "75140",
+      "name": "Hedelmä- ja vihannestuotteiden valmistajat"
+    },
+    {
+      "code": "75150",
+      "name": "Ruokien ja juomien laaduntarkkailijat"
+    },
+    {
+      "code": "75160",
+      "name": "Tupakkatuotteiden valmistajat"
+    },
+    {
+      "code": "75210",
+      "name": "Raakapuun käsittelijät"
+    },
+    {
+      "code": "75220",
+      "name": "Huonekalupuusepät ym."
+    },
+    {
+      "code": "75230",
+      "name": "Konepuusepät"
+    },
+    {
+      "code": "75310",
+      "name": "Vaatturit, pukuompelijat, turkkurit ja hatuntekijät"
+    },
+    {
+      "code": "75320",
+      "name": "Leikkaajat ja mallimestarit"
+    },
+    {
+      "code": "75330",
+      "name": "Koru- ja muut tekstiiliompelijat"
+    },
+    {
+      "code": "75340",
+      "name": "Verhoilijat"
+    },
+    {
+      "code": "75350",
+      "name": "Turkisten muokkaajat ja nahkurit"
+    },
+    {
+      "code": "75360",
+      "name": "Suutarit ym."
+    },
+    {
+      "code": "75410",
+      "name": "Vedenalaistyöntekijät"
+    },
+    {
+      "code": "75420",
+      "name": "Panostajat ja räjäyttäjät"
+    },
+    {
+      "code": "75430",
+      "name": "Luokittelijat ja laaduntarkkailijat (pl. ruoat ja juomat)"
+    },
+    {
+      "code": "75440",
+      "name": "Savupuhdistajat, tuholais- ja rikkakasvintorjujat"
+    },
+    {
+      "code": "75490",
+      "name": "Muut pääluokkaan 7 muualla luokittelemattomat työntekijät"
+    },
+    {
+      "code": "81110",
+      "name": "Kaivos- ja louhostyöntekijät"
+    },
+    {
+      "code": "81120",
+      "name": "Rikastustyöntekijät"
+    },
+    {
+      "code": "81130",
+      "name": "Iskuporaajat ja syväkairaajat"
+    },
+    {
+      "code": "81140",
+      "name": "Betonituote- ym. teollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81210",
+      "name": "Metalliteollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81220",
+      "name": "Metallien teolliset päällystäjät ja viimeistelijät"
+    },
+    {
+      "code": "81310",
+      "name": "Kemianteollisuuden prosessityöntekijät ym."
+    },
+    {
+      "code": "81320",
+      "name": "Valokuvatuotteiden valmistuksen prosessityöntekijät"
+    },
+    {
+      "code": "81410",
+      "name": "Kumituoteteollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81420",
+      "name": "Muovituoteteollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81430",
+      "name": "Paperituoteteollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81510",
+      "name": "Kuitujenkäsittely-, kehruu- ja puolauskoneiden hoitajat"
+    },
+    {
+      "code": "81520",
+      "name": "Kutoma- ja neulekoneiden hoitajat"
+    },
+    {
+      "code": "81530",
+      "name": "Teollisuusompelijat"
+    },
+    {
+      "code": "81540",
+      "name": "Valkaisu-, värjäys- ja puhdistuskoneiden hoitajat"
+    },
+    {
+      "code": "81550",
+      "name": "Turkisten ja nahkojen teolliset käsittelijät, värjääjät ym."
+    },
+    {
+      "code": "81560",
+      "name": "Jalkine- ja laukkuteollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81570",
+      "name": "Pesulatyöntekijät"
+    },
+    {
+      "code": "81590",
+      "name": "Muut tekstiili-, turkis- ja nahkatuoteteollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81600",
+      "name": "Elintarviketeollisuuden prosessityöntekijät"
+    },
+    {
+      "code": "81710",
+      "name": "Paperimassan sekä paperin ja kartongin valmistuksen prosessityöntekijät"
+    },
+    {
+      "code": "81720",
+      "name": "Puu- ja sahatavaran prosessityöntekijät"
+    },
+    {
+      "code": "81810",
+      "name": "Lasi- ja keramiikkateollisuuden uunienhoitajat"
+    },
+    {
+      "code": "81821",
+      "name": "Voima- ja jätteenkäsittelylaitosten laitosmiehet"
+    },
+    {
+      "code": "81822",
+      "name": "Muut laitosmiehet ym."
+    },
+    {
+      "code": "81830",
+      "name": "Pakkaus-, pullotus- ja etiketöintikoneiden hoitajat"
+    },
+    {
+      "code": "81890",
+      "name": "Muut muualla luokittelemattomat prosessityöntekijät"
+    },
+    {
+      "code": "82110",
+      "name": "Konepaja- ja metallituotteiden kokoonpanijat"
+    },
+    {
+      "code": "82120",
+      "name": "Sähkö- ja elektroniikkalaitteiden kokoonpanijat"
+    },
+    {
+      "code": "82190",
+      "name": "Muut teollisuustuotteiden kokoonpanijat"
+    },
+    {
+      "code": "83110",
+      "name": "Veturinkuljettajat"
+    },
+    {
+      "code": "83120",
+      "name": "Jarru-, turvalaite- ja vaihdetyöntekijät"
+    },
+    {
+      "code": "83210",
+      "name": "Moottoripyörälähetit yms."
+    },
+    {
+      "code": "83220",
+      "name": "Henkilö-, taksi- ja pakettiautonkuljettajat"
+    },
+    {
+      "code": "83310",
+      "name": "Linja-auton- ja raitiovaununkuljettajat"
+    },
+    {
+      "code": "83320",
+      "name": "Kuorma-auton ja erikoisajoneuvojen kuljettajat"
+    },
+    {
+      "code": "83410",
+      "name": "Maa- ja metsätaloustyökoneiden kuljettajat"
+    },
+    {
+      "code": "83420",
+      "name": "Maansiirtokoneiden ym. kuljettajat"
+    },
+    {
+      "code": "83430",
+      "name": "Nosturinkuljettajat"
+    },
+    {
+      "code": "83441",
+      "name": "Ahtaajat"
+    },
+    {
+      "code": "83442",
+      "name": "Trukinkuljettajat ym."
+    },
+    {
+      "code": "83500",
+      "name": "Kansimiehistö ym. vesiliikenteen työntekijät"
+    },
+    {
+      "code": "91110",
+      "name": "Kotiapulaiset ja -siivoojat"
+    },
+    {
+      "code": "91121",
+      "name": "Toimistosiivoojat ym."
+    },
+    {
+      "code": "91122",
+      "name": "Hotellisiivoojat"
+    },
+    {
+      "code": "91123",
+      "name": "Sairaala- ja laitosapulaiset"
+    },
+    {
+      "code": "91124",
+      "name": "Päiväkotiapulaiset"
+    },
+    {
+      "code": "91129",
+      "name": "Muut muualla luokittelemattomat siivoojat"
+    },
+    {
+      "code": "91220",
+      "name": "Ajoneuvojen pesijät"
+    },
+    {
+      "code": "91230",
+      "name": "Ikkunanpesijät"
+    },
+    {
+      "code": "91290",
+      "name": "Muut puhdistustyöntekijät"
+    },
+    {
+      "code": "92110",
+      "name": "Maanviljelyn avustavat työntekijät"
+    },
+    {
+      "code": "92120",
+      "name": "Karjankasvatuksen avustavat työntekijät"
+    },
+    {
+      "code": "92130",
+      "name": "Yhdistetyn maanviljelyn ja karjankasvatuksen avustavat työntekijät"
+    },
+    {
+      "code": "92140",
+      "name": "Avustavat puutarhatyöntekijät"
+    },
+    {
+      "code": "92150",
+      "name": "Metsätalouden avustavat työntekijät"
+    },
+    {
+      "code": "92160",
+      "name": "Kalatalouden ja vesiviljelyn avustavat työntekijät"
+    },
+    {
+      "code": "93110",
+      "name": "Kaivosten avustavat työntekijät"
+    },
+    {
+      "code": "93120",
+      "name": "Maa- ja vesirakentamisen avustavat työntekijät"
+    },
+    {
+      "code": "93130",
+      "name": "Rakennusalan avustavat työntekijät"
+    },
+    {
+      "code": "93210",
+      "name": "Käsinpakkaajat"
+    },
+    {
+      "code": "93290",
+      "name": "Muut valmistusalan avustavat työntekijät"
+    },
+    {
+      "code": "93310",
+      "name": "Käsivetoisten- ja poljinkulkuneuvojen kuljettajat"
+    },
+    {
+      "code": "93320",
+      "name": "Eläinvetoisten kulkuneuvojen kuljettajat"
+    },
+    {
+      "code": "93330",
+      "name": "Rahdinkäsittelijät, varastotyöntekijät ym."
+    },
+    {
+      "code": "93340",
+      "name": "Hyllyjen täyttäjät"
+    },
+    {
+      "code": "94110",
+      "name": "Pikaruokatyöntekijät"
+    },
+    {
+      "code": "94120",
+      "name": "Avustavat keittiötyöntekijät"
+    },
+    {
+      "code": "95100",
+      "name": "Mainosten jakajat, kengänkiillottajat ym."
+    },
+    {
+      "code": "95200",
+      "name": "Katumyyjät (pl. elintarvikkeet)"
+    },
+    {
+      "code": "96110",
+      "name": "Jätteiden kerääjät"
+    },
+    {
+      "code": "96120",
+      "name": "Jätteiden lajittelijat"
+    },
+    {
+      "code": "96130",
+      "name": "Kadunlakaisijat ym."
+    },
+    {
+      "code": "96210",
+      "name": "Sanomalehtien jakajat, lähetit ja kantajat"
+    },
+    {
+      "code": "96220",
+      "name": "Satunnaistöiden tekijät"
+    },
+    {
+      "code": "96230",
+      "name": "Mittareiden lukijat ym."
+    },
+    {
+      "code": "96240",
+      "name": "Vedenhakijat ja polttopuun kerääjät"
+    },
+    {
+      "code": "96290",
+      "name": "Muut muualla luokittelemattomat työntekijät"
+    }
+  ]
+}

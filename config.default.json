@@ -1,0 +1,418 @@
+{
+  "app": {
+    "config_version": 8,
+    "minimum_score": 38,
+    "request_timeout_seconds": 25,
+    "maximum_details_per_source": 80,
+    "days_to_show": 60,
+    "duplicate_window_days": 60
+  },
+  "profile": {
+    "preferred_locations": [
+      "Vantaa",
+      "Helsinki",
+      "Espoo"
+    ],
+    "acceptable_locations": [
+      "pääkaupunkiseutu",
+      "Uusimaa",
+      "Kerava",
+      "Tuusula"
+    ],
+    "roles": [
+      "varastotyöntekijä",
+      "varastonhoitaja",
+      "varastokeräilijä",
+      "keräilijä",
+      "pakkaaja",
+      "terminaalityöntekijä",
+      "logistiikkatyöntekijä",
+      "tuotantotyöntekijä",
+      "kokoonpanija",
+      "siivooja",
+      "laitoshuoltaja",
+      "teollisuussiivooja",
+      "pihatyöntekijä",
+      "viherrakentaja",
+      "vihertyöntekijä",
+      "myymälätyöntekijä",
+      "hyllyttäjä"
+    ],
+    "strengths": [
+      "varastonhoitajan koulutus",
+      "kokemusta varasto-, logistiikka- ja siivoustehtävistä",
+      "kokemusta pihanhoidosta ja ruohonleikkuusta",
+      "hyvät tietokonetaidot",
+      "oma-aloitteinen",
+      "hyvä muisti ja hahmotuskyky",
+      "valmis fyysiseen työhön",
+      "aamu-, ilta- ja vuorotyö sopivat"
+    ],
+    "qualifications": {
+      "B-ajokortti": "no",
+      "BE-ajokortti": "unknown",
+      "C-ajokortti": "unknown",
+      "CE-ajokortti": "unknown",
+      "ADR-ajolupa": "unknown",
+      "kuljettajan ammattipätevyys": "unknown",
+      "digipiirturikortti": "unknown",
+      "trukkikortti": "unknown",
+      "työturvallisuuskortti": "unknown",
+      "tulityökortti": "unknown",
+      "Tieturva 1": "unknown",
+      "sähkötyöturvallisuuskortti SFS 6002": "unknown",
+      "henkilönostinkortti": "unknown",
+      "nosturinkuljettajan pätevyys": "unknown",
+      "hygieniapassi": "unknown",
+      "anniskelupassi": "unknown",
+      "ensiapukortti EA1": "unknown",
+      "hätäensiapukortti": "unknown",
+      "järjestyksenvalvojakortti": "unknown",
+      "vartijakortti": "unknown"
+    },
+    "excluded_phrases": [
+      "pelkkä provisiopalkka",
+      "ainoastaan provisio",
+      "toimeksiantosopimus",
+      "kevyt-yrittäjä",
+      "kevytyrittäjä",
+      "franchising-yrittäjä",
+      "maksullinen koulutus"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Posti",
+      "type": "workday",
+      "url": "https://posti.wd3.myworkdayjobs.com/external",
+      "enabled": true
+    },
+    {
+      "name": "Lassila & Tikanoja",
+      "type": "html",
+      "url": "https://www.lt.fi/tyopaikat/avoimet-tyopaikat",
+      "link_patterns": [
+        "career2\\.successfactors\\.eu/.+"
+      ],
+      "exclude_titles": [
+        "kirjaudu",
+        "hakijaprofiili"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "SOL",
+      "type": "html",
+      "url": "https://www.sol.fi/toihin-meille/",
+      "link_patterns": [
+        "ats\\.talentadore\\.com/.+"
+      ],
+      "exclude_titles": [
+        "katso kaikki",
+        "avoin hakemus"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "ISS",
+      "type": "html",
+      "url": "https://www.fi.issworld.com/iss-tyopaikat/avoimet-tyopaikat",
+      "link_patterns": [
+        "reachmee\\.com/.+"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "muokkaa aiempaa"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "StaffPoint",
+      "type": "html",
+      "url": "https://www.staffpoint.fi/tyopaikat",
+      "link_patterns": [
+        "staffpoint\\.fi/tyopaikat/[a-z0-9-]+$"
+      ],
+      "exclude_titles": [
+        "näytä kaikki"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "WorkPower",
+      "type": "wordpress",
+      "url": "https://www.workpower.fi/tyopaikat/",
+      "api_url": "https://www.workpower.fi/wp-json/wp/v2/job",
+      "enabled": true
+    },
+    {
+      "name": "Duunitori",
+      "type": "html",
+      "url": "https://duunitori.fi/tyopaikat?alue=p%C3%A4%C3%A4kaupunkiseutu&haku=varasto&search_also_descr=1",
+      "urls": [
+        "https://duunitori.fi/tyopaikat?alue=p%C3%A4%C3%A4kaupunkiseutu&haku=siivous&search_also_descr=1",
+        "https://duunitori.fi/tyopaikat?alue=p%C3%A4%C3%A4kaupunkiseutu&haku=tuotanto&search_also_descr=1",
+        "https://duunitori.fi/tyopaikat?alue=p%C3%A4%C3%A4kaupunkiseutu&haku=pihaty%C3%B6&search_also_descr=1",
+        "https://duunitori.fi/tyopaikat?alue=p%C3%A4%C3%A4kaupunkiseutu&haku=myym%C3%A4l%C3%A4ty%C3%B6ntekij%C3%A4&search_also_descr=1"
+      ],
+      "link_patterns": [
+        "duunitori\\.fi/tyopaikat/tyo/[^/?#]+$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "lisää"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Jobly",
+      "type": "html",
+      "url": "https://www.jobly.fi/tyopaikat/warehouse-employee/uusimaa",
+      "urls": [
+        "https://www.jobly.fi/tyopaikat/logistics-worker/uusimaa",
+        "https://www.jobly.fi/tyopaikat/cleaner/uusimaa",
+        "https://www.jobly.fi/tyopaikat/production-worker/uusimaa",
+        "https://www.jobly.fi/tyopaikat/shop-assistant/uusimaa"
+      ],
+      "link_patterns": [
+        "jobly\\.fi/tyopaikka/[a-z0-9-]+$"
+      ],
+      "exclude_titles": [
+        "tallenna työpaikka",
+        "avoin hakemus"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "S-ryhmä",
+      "type": "html",
+      "url": "https://s-ryhma.fi/tyopaikat/avoimet-tyopaikat",
+      "link_patterns": [
+        "s-ryhma\\.fi/tyopaikat/avoimet-tyopaikat\\?.*id=",
+        "careers\\.sok\\.fi/.+",
+        "hok-elanto\\.fi/.+tyopaik"
+      ],
+      "exclude_titles": [
+        "kaikki avoimet",
+        "kesätyöt"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Laura.fi – Uusimaa",
+      "type": "sitemap",
+      "url": "https://laura.fi/avoimet-tyopaikat/uusimaa/",
+      "sitemap_urls": [
+        "https://laura.fi/sitemap_index.xml"
+      ],
+      "link_patterns": [
+        "laura\\.fi/avoimet-tyopaikat/[^/?#]+/[^/?#]+/\\d+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "työpaikkavahti"
+      ],
+      "maximum_sitemap_details": 80,
+      "enabled": true
+    },
+    {
+      "name": "Kuntarekry",
+      "type": "feed",
+      "url": "https://www.kuntarekry.fi/fi/tyopaikat/",
+      "feed_urls": [
+        "https://www.kuntarekry.fi/fi/tyopaikat/?limit=500&sort=-publish_from&format=rss"
+      ],
+      "link_patterns": [
+        "kuntarekry\\.fi/fi/tyopaikat/[^/?#]+-\\d+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "sijaisrekisteri"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Helsinki Rekry",
+      "type": "sitemap",
+      "url": "https://laura.fi/avoimet-tyopaikat/helsingin-kaupunki/",
+      "sitemap_urls": [
+        "https://laura.fi/sitemap_index.xml"
+      ],
+      "link_patterns": [
+        "laura\\.fi/avoimet-tyopaikat/helsingin-kaupunki/[^/?#]+/\\d+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus"
+      ],
+      "maximum_sitemap_details": 80,
+      "enabled": true
+    },
+    {
+      "name": "Valtiolle.fi",
+      "type": "feed",
+      "url": "https://valtiolle.fi/fi/tyopaikat/",
+      "feed_urls": [
+        "https://valtiolle.fi/fi/tyopaikat/?limit=500&sort=-publish_from&format=rss"
+      ],
+      "link_patterns": [
+        "valtiolle\\.fi/fi/tyopaikat/[^/?#]+-\\d+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Bolt.Works",
+      "type": "sitemap",
+      "url": "https://laura.fi/avoimet-tyopaikat/bolt-works-oy/",
+      "sitemap_urls": [
+        "https://laura.fi/sitemap_index.xml"
+      ],
+      "link_patterns": [
+        "laura\\.fi/avoimet-tyopaikat/bolt-works-oy/[^/?#]+/\\d+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "luo profiili"
+      ],
+      "maximum_sitemap_details": 80,
+      "enabled": true
+    },
+    {
+      "name": "Seure",
+      "type": "html",
+      "url": "https://rekrytointi.seure.fi/jobs",
+      "link_patterns": [
+        "rekrytointi\\.seure\\.fi/jobs/\\d+-[^/?#]+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Kesko",
+      "type": "html",
+      "url": "https://www.kesko.fi/tyopaikat/avoimet-tyopaikat/",
+      "link_patterns": [
+        "emp\\.jobylon\\.com/.+"
+      ],
+      "exclude_titles": [
+        "kaikki avoimet työpaikat",
+        "avoin hakemus"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Palmia",
+      "type": "html",
+      "url": "https://palmiaoy.teamtailor.com/jobs",
+      "link_patterns": [
+        "palmiaoy\\.teamtailor\\.com/jobs/\\d+-[^/?#]+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Vantti",
+      "type": "html",
+      "url": "https://web103.reachmee.com/ext/I022/1956/main?lang=FI&site=9&validator=d782c935fd5542efd6097e8fbfb00165",
+      "link_patterns": [
+        "web103\\.reachmee\\.com/ext/I022/1956/job\\?.+"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "työssäoppija",
+        "työkokeilija"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Eezy",
+      "type": "eezy",
+      "url": "https://tyopaikat.eezy.fi/fi",
+      "api_url": "https://api.eezy.fi/api",
+      "link_patterns": [
+        "tyopaikat\\.eezy\\.fi/tyopaikat/[^/?#]+$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus"
+      ],
+      "api_page_size": 100,
+      "maximum_api_jobs": 500,
+      "enabled": false
+    },
+    {
+      "name": "Manpower",
+      "type": "html",
+      "url": "https://www.manpower.fi/tyopaikka",
+      "link_patterns": [
+        "manpower\\.fi/tyo/[^/?#]+$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "tallenna työpaikka"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "Bondata",
+      "type": "sitemap",
+      "url": "https://henkilostopalvelut.bondata.fi/tyonhakijalle/avoimet-tyopaikat/",
+      "sitemap_urls": [
+        "https://henkilostopalvelut.bondata.fi/sitemap_index.xml"
+      ],
+      "link_patterns": [
+        "henkilostopalvelut\\.bondata\\.fi/tyonhakijalle/avoimet-tyopaikat/[^/?#]+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "luo hakuvahti"
+      ],
+      "maximum_sitemap_details": 80,
+      "enabled": false
+    },
+    {
+      "name": "Amiko",
+      "type": "html",
+      "url": "https://www.amiko.fi/avoimet-tyopaikat/",
+      "link_patterns": [
+        "amiko\\.fi/tyopaikat/[^/?#]+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "vanhemmat viestit"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "Worker",
+      "type": "html",
+      "url": "https://www.worker.fi/job-listings/",
+      "link_patterns": [
+        "worker\\.fi/job/[^/?#]+/?$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "ukraine"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "RTK-Henkilöstöpalvelu",
+      "type": "html",
+      "url": "https://rtkhenkilostopalvelu.fi/avoimet-tyopaikat/",
+      "link_patterns": [
+        "rtkhenkilostopalvelu\\.fi/avoimet-tyopaikat/\\?id=\\d+$"
+      ],
+      "exclude_titles": [
+        "avoin hakemus",
+        "pikahakemus"
+      ],
+      "enabled": false
+    }
+  ]
+}
