@@ -320,7 +320,7 @@ class TyopaikkatutkaTests(unittest.TestCase):
 
     def test_branding_and_icon_assets(self):
         self.assertEqual("Työpaikkatutka", tyopaikkatutka.APP_NAME)
-        self.assertEqual("1.6.1", tyopaikkatutka.APP_VERSION)
+        self.assertEqual("1.6.3", tyopaikkatutka.APP_VERSION)
         self.assertEqual(8, tyopaikkatutka.PROFILE_SELECTION_LIST_HEIGHT)
         self.assertEqual(
             b"\x89PNG\r\n\x1a\n",
@@ -754,6 +754,61 @@ class TyopaikkatutkaTests(unittest.TestCase):
                 ),
                 config,
             )
+        )
+
+    def test_structured_location_cannot_be_overridden_by_description(self):
+        config = test_config()
+        config["profile"]["preferred_locations"] = [
+            "Vantaa",
+            "Helsinki",
+            "Espoo",
+            "Kerava",
+        ]
+        config["profile"]["acceptable_locations"] = [
+            "pääkaupunkiseutu",
+            "Uusimaa",
+            "Tuusula",
+        ]
+        kouvola = tyopaikkatutka.Job(
+            title="Avoin haku – Tuotantotyöntekijät",
+            company="Eezy Henkilöstöpalvelut Oy",
+            location="Kouvola, Kymenlaakso, FI",
+            url="https://example.com/kouvola",
+            source="Eezy",
+            description=(
+                "Yrityksellä on toimintaa myös Helsingissä ja muualla "
+                "Uudellamaalla. Tämä tehtävä sijaitsee Kouvolassa."
+            ),
+        )
+        self.assertFalse(
+            tyopaikkatutka.job_matches_location_filter(kouvola, config)
+        )
+
+        helsinki = tyopaikkatutka.Job(
+            title="Siivooja",
+            company="Testi Oy",
+            location="Helsinki, FI",
+            url="https://example.com/helsinki",
+            source="Testi",
+            description="Yrityksellä on toimipiste myös Kouvolassa.",
+        )
+        self.assertTrue(
+            tyopaikkatutka.job_matches_location_filter(helsinki, config)
+        )
+
+    def test_title_location_replaces_polluted_html_location_list(self):
+        config = test_config()
+        config["profile"]["preferred_locations"] = ["Helsinki"]
+        config["profile"]["acceptable_locations"] = ["Uusimaa"]
+        polluted = tyopaikkatutka.Job(
+            title="Tuotantotyöntekijä, Akaa",
+            company="Amiko",
+            location="Akaa, Helsinki, Hyvinkää, Jyväskylä, Kouvola",
+            url="https://example.com/akaa",
+            source="Amiko",
+        )
+        self.assertFalse(
+            tyopaikkatutka.job_matches_location_filter(polluted, config)
         )
         self.assertFalse(
             tyopaikkatutka.job_matches_location_filter(
@@ -1434,8 +1489,40 @@ class TyopaikkatutkaTests(unittest.TestCase):
                 self.assertEqual(1, database.count())
                 row = database.get_job(job.fingerprint)
                 self.assertEqual("applied", row["status"])
+                self.assertIsNotNone(row["applied_at"])
                 self.assertEqual(75, row["score"])
                 self.assertIsNone(row["draft"])
+            finally:
+                database.close()
+
+    def test_applied_job_history_survives_removal_from_main_list(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            database = tyopaikkatutka.JobDatabase(Path(temp_dir) / "jobs.db")
+            try:
+                job = tyopaikkatutka.Job(
+                    title="Varastotyöntekijä",
+                    company="Testi Oy",
+                    location="Vantaa",
+                    url="https://example.com/applied-history",
+                    source="Testi",
+                    score=70,
+                )
+                database.upsert(job)
+                database.set_status(job.fingerprint, "applied")
+                applied_at = database.get_job(job.fingerprint)["applied_at"]
+                self.assertEqual(
+                    "Testi Oy",
+                    database.list_applied_jobs()[0]["company"],
+                )
+
+                database.set_status(job.fingerprint, "ignored")
+                row = database.get_job(job.fingerprint)
+                self.assertEqual("ignored", row["status"])
+                self.assertEqual(applied_at, row["applied_at"])
+                self.assertEqual(
+                    [job.fingerprint],
+                    [item["fingerprint"] for item in database.list_applied_jobs()],
+                )
             finally:
                 database.close()
 
@@ -1641,6 +1728,15 @@ class TyopaikkatutkaTests(unittest.TestCase):
                 try:
                     row = database.get_job("old-fingerprint")
                     self.assertEqual("applied", row["status"])
+                    self.assertIsNone(row["applied_at"])
+                    self.assertEqual(1, row["applied_once"])
+                    self.assertEqual(
+                        ["old-fingerprint"],
+                        [
+                            item["fingerprint"]
+                            for item in database.list_applied_jobs()
+                        ],
+                    )
                     self.assertTrue(row["canonical_key"])
                     self.assertEqual(1, len(json.loads(row["links_json"])))
 

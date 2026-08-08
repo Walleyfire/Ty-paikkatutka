@@ -1,6 +1,6 @@
 # Työpaikkatutka
 
-Versio 1.6.1
+Versio 1.6.3
 
 Windowsilla toimiva työnhakuvahti. Ohjelma tarkistaa valitut työnantajien
 urasivut, etsii käyttäjän profiiliin sopivia paikkoja, pisteyttää tulokset
@@ -41,6 +41,8 @@ eikä niitä pidä lisätä GitHub-repositoryyn.
 - **Avaa ilmoitus:** avaa valitun työnantajan hakuilmoituksen selaimessa.
 - **Lähdelinkit:** näyttää kaikki osoitteet, joista sama ilmoitus löytyi.
 - **Merkitse haetuksi:** tallentaa, että hakemus on lähetetty.
+- **Haetut työpaikat:** avaa hakuhistorian, jossa näkyvät työnantaja,
+  työtehtävä ja hakupäivä. Ilmoituksen voi avata kaksoisnapsauttamalla riviä.
 - **Poista listasta:** piilottaa paikan tavallisesta näkymästä pysyvästi.
   Poistetut saa tarvittaessa näkyviin valinnalla **Näytä poistetut**.
 - **Avaa asetukset:** avaa samaa vaaleaa tai tummaa teemaa käyttävän graafisen
@@ -96,7 +98,7 @@ muut Uudenmaan kunnat. Luokitus perustuu
 
 ## Lähteet
 
-Versiossa 1.6.1 ovat mukana Posti, Lassila & Tikanoja, SOL, ISS, S-ryhmä,
+Versiossa 1.6.3 ovat mukana Posti, Lassila & Tikanoja, SOL, ISS, S-ryhmä,
 StaffPoint, WorkPower, Duunitori, Jobly, Laura.fi, Kuntarekry, Helsinki Rekry,
 Valtiolle.fi, Bolt.Works, Seure, Kesko, Palmia, Vantti, Eezy, Manpower,
 Bondata, Amiko, Worker ja RTK-Henkilöstöpalvelu. Kuusi viimeksi mainittua
@@ -150,6 +152,36 @@ Lisää `sources`-listaan esimerkiksi:
 `link_patterns` käyttää säännöllisiä lausekkeita. Jos sivu muuttuu tai lataa
 paikat vain JavaScriptillä, tavallinen HTML-haku ei välttämättä näe niitä.
 Ohjelma jatkaa muiden lähteiden tarkistamista ja näyttää virheen lokissa.
+
+## Version 1.6.3 muutokset
+
+- Pääikkunaan on lisätty **Haetut työpaikat** -painike.
+- Haettujen työpaikkojen näkymässä näkyvät työnantaja, työtehtävä ja
+  hakupäivä.
+- Hakupäivä tallentuu automaattisesti, kun työpaikka merkitään haetuksi.
+- Haettu työpaikka säilyy hakuhistoriassa, vaikka se poistetaan myöhemmin
+  tavallisesta työpaikkalistasta.
+- Ennen versiota 1.6.3 haetuksi merkittyjen paikkojen tarkkaa hakupäivää ei ole
+  tallennettu. Ne säilyvät historiassa merkinnällä **Ei tallennettu**.
+- Haettujen työpaikkojen ikkuna käyttää samaa Windowsin vaaleaa tai tummaa
+  teemaa ja sovelluskuvaketta kuin pääikkuna.
+- Päivitys säilyttää nykyisen `config.json`-tiedoston, tietokannan ja kaikki
+  aikaisemmat Haettu-merkinnät.
+
+## Version 1.6.2 muutokset
+
+- Korjattu sijaintisuodatus käyttämään ensisijaisesti ilmoituksen varsinaista
+  sijaintikenttää.
+- Valittujen alueiden ulkopuoliset tunnistetut kunnat ja maakunnat, kuten
+  Kouvola ja Kymenlaakso, eivät enää näy työpaikkalistassa.
+- Ilmoituksen kuvauksessa mainittu Helsinki, Uusimaa tai muu valittu alue ei
+  enää ohita ilmoituksen varsinaista sijaintia.
+- Jos HTML-sivu on lisännyt sijaintikenttään virheellisesti pitkän luettelon
+  kuntia, tehtävänimessä oleva selkeä paikkakunta asetetaan etusijalle.
+- Korjaus suodattaa myös tietokannassa jo olevat väärän alueen ilmoitukset;
+  käyttäjän ei tarvitse poistaa niitä käsin.
+- Nykyinen `config.json`, `data/jobs.db`, hakuhistoria sekä **Haettu**,
+  **Poistettu** ja **Uudelleen julkaistu** -tilat säilyvät muuttumattomina.
 
 ## Versio 1.6.1 – ensimmäinen julkinen julkaisu
 
