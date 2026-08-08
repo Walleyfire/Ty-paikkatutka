@@ -153,7 +153,7 @@ Lisää `sources`-listaan esimerkiksi:
 paikat vain JavaScriptillä, tavallinen HTML-haku ei välttämättä näe niitä.
 Ohjelma jatkaa muiden lähteiden tarkistamista ja näyttää virheen lokissa.
 
-## Version 1.6.3 muutokset
+## Version 1.6.3 uusia ominaisuuksia ja muutoksia
 
 - Pääikkunaan on lisätty **Haetut työpaikat** -painike.
 - Haettujen työpaikkojen näkymässä näkyvät työnantaja, työtehtävä ja
