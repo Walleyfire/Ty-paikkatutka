@@ -51,7 +51,7 @@ BACKUP_DIR = APP_DIR / "varmuuskopiot"
 DB_PATH = DATA_DIR / "jobs.db"
 LOG_PATH = LOG_DIR / "tyopaikkatutka.log"
 APP_NAME = "Työpaikkatutka"
-APP_VERSION = "1.6.1"
+APP_VERSION = "1.6.2"
 CONFIG_VERSION = 8
 DEADLINE_HEADING = "Haku päättyy"
 PROFILE_SELECTION_LIST_HEIGHT = 8
@@ -1582,7 +1582,12 @@ def detect_finland_locations(text: Any) -> list[str]:
 
 
 def job_matches_location_filter(job: Any, config: dict[str, Any]) -> bool:
-    """Rajaa tunnistetut työpaikat valittuihin kuntiin tai maakuntiin."""
+    """Rajaa tunnistetut työpaikat valittuihin kuntiin tai maakuntiin.
+
+    Varsinainen sijaintikenttä on ensisijainen. Ilmoituksen kuvaus voi sisältää
+    esimerkiksi yrityksen muiden toimipisteiden nimiä, eikä sellainen maininta
+    saa päästää väärällä paikkakunnalla olevaa työtä sijaintisuodattimen läpi.
+    """
     profile = config.get("profile", {})
     choices = (
         profile.get("preferred_locations", [])
@@ -1600,15 +1605,39 @@ def job_matches_location_filter(job: Any, config: dict[str, Any]) -> bool:
         except (KeyError, IndexError, TypeError):
             return ""
 
-    full_text = " ".join(
-        clean_space(field(name))
-        for name in ("title", "company", "location", "description")
-    )
-    if matching_location_choices(full_text, choices):
+    title_text = clean_space(field("title"))
+    location_text = clean_space(field("location"))
+    description_text = clean_space(field("description"))
+    title_locations = detect_finland_locations(title_text)
+    location_locations = detect_finland_locations(location_text)
+
+    # Jotkin HTML-sivut vuotavat sijaintikenttään koko sivun navigaatiosta
+    # useita kuntia. Jos tehtävän nimessä on tällöin yksi selkeä paikkakunta,
+    # se on luotettavampi kuin pitkä sijaintiluettelo.
+    if len(location_locations) > 3 and 0 < len(title_locations) <= 2:
+        return bool(matching_location_choices(title_text, choices))
+
+    # Rakenteinen sijainti ratkaisee. Kuvauksessa mainittu Helsinki tai
+    # Uusimaa ei näin hyväksy esimerkiksi Kouvolassa olevaa työpaikkaa.
+    if location_locations:
+        return bool(matching_location_choices(location_text, choices))
+
+    # Käyttäjän oma sijaintinimi, kuten "pääkaupunkiseutu", ei välttämättä
+    # kuulu viralliseen kuntaluetteloon mutta voidaan silti tunnistaa.
+    if matching_location_choices(location_text, choices):
         return True
-    # Tunnistamattoman sijainnin ilmoitus jätetään näkyviin tarkistettavaksi.
-    # Varmasti tunnistettu väärä kunta tai maakunta rajataan pois.
-    return not detect_finland_locations(full_text)
+
+    if title_locations:
+        return bool(matching_location_choices(title_text, choices))
+    if matching_location_choices(title_text, choices):
+        return True
+
+    # Kuvausta käytetään vasta viimeisenä varavaihtoehtona, jos ilmoituksella
+    # ei ole lainkaan tunnistettavaa sijaintia tai paikkakuntaa nimessä.
+    if matching_location_choices(description_text, choices):
+        return True
+    # Täysin tunnistamaton sijainti jätetään näkyviin käyttäjän tarkistettavaksi.
+    return not detect_finland_locations(description_text)
 
 
 def settings_list(value: Any) -> list[str]:

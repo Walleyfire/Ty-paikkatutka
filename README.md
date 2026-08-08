@@ -1,6 +1,6 @@
 # Työpaikkatutka
 
-Versio 1.6.1
+Versio 1.6.2
 
 Windowsilla toimiva työnhakuvahti. Ohjelma tarkistaa valitut työnantajien
 urasivut, etsii käyttäjän profiiliin sopivia paikkoja, pisteyttää tulokset
@@ -96,7 +96,7 @@ muut Uudenmaan kunnat. Luokitus perustuu
 
 ## Lähteet
 
-Versiossa 1.6.1 ovat mukana Posti, Lassila & Tikanoja, SOL, ISS, S-ryhmä,
+Versiossa 1.6.2 ovat mukana Posti, Lassila & Tikanoja, SOL, ISS, S-ryhmä,
 StaffPoint, WorkPower, Duunitori, Jobly, Laura.fi, Kuntarekry, Helsinki Rekry,
 Valtiolle.fi, Bolt.Works, Seure, Kesko, Palmia, Vantti, Eezy, Manpower,
 Bondata, Amiko, Worker ja RTK-Henkilöstöpalvelu. Kuusi viimeksi mainittua
@@ -150,6 +150,21 @@ Lisää `sources`-listaan esimerkiksi:
 `link_patterns` käyttää säännöllisiä lausekkeita. Jos sivu muuttuu tai lataa
 paikat vain JavaScriptillä, tavallinen HTML-haku ei välttämättä näe niitä.
 Ohjelma jatkaa muiden lähteiden tarkistamista ja näyttää virheen lokissa.
+
+## Version 1.6.2 muutokset
+
+- Korjattu sijaintisuodatus käyttämään ensisijaisesti ilmoituksen varsinaista
+  sijaintikenttää.
+- Valittujen alueiden ulkopuoliset tunnistetut kunnat ja maakunnat, kuten
+  Kouvola ja Kymenlaakso, eivät enää näy työpaikkalistassa.
+- Ilmoituksen kuvauksessa mainittu Helsinki, Uusimaa tai muu valittu alue ei
+  enää ohita ilmoituksen varsinaista sijaintia.
+- Jos HTML-sivu on lisännyt sijaintikenttään virheellisesti pitkän luettelon
+  kuntia, tehtävänimessä oleva selkeä paikkakunta asetetaan etusijalle.
+- Korjaus suodattaa myös tietokannassa jo olevat väärän alueen ilmoitukset;
+  käyttäjän ei tarvitse poistaa niitä käsin.
+- Nykyinen `config.json`, `data/jobs.db`, hakuhistoria sekä **Haettu**,
+  **Poistettu** ja **Uudelleen julkaistu** -tilat säilyvät muuttumattomina.
 
 ## Versio 1.6.1 – ensimmäinen julkinen julkaisu
 

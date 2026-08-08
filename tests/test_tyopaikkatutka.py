@@ -320,7 +320,7 @@ class TyopaikkatutkaTests(unittest.TestCase):
 
     def test_branding_and_icon_assets(self):
         self.assertEqual("Työpaikkatutka", tyopaikkatutka.APP_NAME)
-        self.assertEqual("1.6.1", tyopaikkatutka.APP_VERSION)
+        self.assertEqual("1.6.2", tyopaikkatutka.APP_VERSION)
         self.assertEqual(8, tyopaikkatutka.PROFILE_SELECTION_LIST_HEIGHT)
         self.assertEqual(
             b"\x89PNG\r\n\x1a\n",
@@ -754,6 +754,61 @@ class TyopaikkatutkaTests(unittest.TestCase):
                 ),
                 config,
             )
+        )
+
+    def test_structured_location_cannot_be_overridden_by_description(self):
+        config = test_config()
+        config["profile"]["preferred_locations"] = [
+            "Vantaa",
+            "Helsinki",
+            "Espoo",
+            "Kerava",
+        ]
+        config["profile"]["acceptable_locations"] = [
+            "pääkaupunkiseutu",
+            "Uusimaa",
+            "Tuusula",
+        ]
+        kouvola = tyopaikkatutka.Job(
+            title="Avoin haku – Tuotantotyöntekijät",
+            company="Eezy Henkilöstöpalvelut Oy",
+            location="Kouvola, Kymenlaakso, FI",
+            url="https://example.com/kouvola",
+            source="Eezy",
+            description=(
+                "Yrityksellä on toimintaa myös Helsingissä ja muualla "
+                "Uudellamaalla. Tämä tehtävä sijaitsee Kouvolassa."
+            ),
+        )
+        self.assertFalse(
+            tyopaikkatutka.job_matches_location_filter(kouvola, config)
+        )
+
+        helsinki = tyopaikkatutka.Job(
+            title="Siivooja",
+            company="Testi Oy",
+            location="Helsinki, FI",
+            url="https://example.com/helsinki",
+            source="Testi",
+            description="Yrityksellä on toimipiste myös Kouvolassa.",
+        )
+        self.assertTrue(
+            tyopaikkatutka.job_matches_location_filter(helsinki, config)
+        )
+
+    def test_title_location_replaces_polluted_html_location_list(self):
+        config = test_config()
+        config["profile"]["preferred_locations"] = ["Helsinki"]
+        config["profile"]["acceptable_locations"] = ["Uusimaa"]
+        polluted = tyopaikkatutka.Job(
+            title="Tuotantotyöntekijä, Akaa",
+            company="Amiko",
+            location="Akaa, Helsinki, Hyvinkää, Jyväskylä, Kouvola",
+            url="https://example.com/akaa",
+            source="Amiko",
+        )
+        self.assertFalse(
+            tyopaikkatutka.job_matches_location_filter(polluted, config)
         )
         self.assertFalse(
             tyopaikkatutka.job_matches_location_filter(
