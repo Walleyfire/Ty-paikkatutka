@@ -51,7 +51,7 @@ BACKUP_DIR = APP_DIR / "varmuuskopiot"
 DB_PATH = DATA_DIR / "jobs.db"
 LOG_PATH = LOG_DIR / "tyopaikkatutka.log"
 APP_NAME = "Työpaikkatutka"
-APP_VERSION = "1.6.2"
+APP_VERSION = "1.6.3"
 CONFIG_VERSION = 8
 DEADLINE_HEADING = "Haku päättyy"
 PROFILE_SELECTION_LIST_HEIGHT = 8
@@ -3446,6 +3446,8 @@ class JobDatabase:
                 matched_roles_json TEXT NOT NULL DEFAULT '[]',
                 draft TEXT,
                 status TEXT NOT NULL DEFAULT 'new',
+                applied_at TEXT,
+                applied_once INTEGER NOT NULL DEFAULT 0,
                 first_seen TEXT NOT NULL,
                 last_seen TEXT NOT NULL
             )
@@ -3460,6 +3462,20 @@ class JobDatabase:
             self.connection.execute(
                 "ALTER TABLE jobs ADD COLUMN links_json TEXT NOT NULL DEFAULT '[]'"
             )
+        if "applied_at" not in columns:
+            self.connection.execute(
+                "ALTER TABLE jobs ADD COLUMN applied_at TEXT"
+            )
+        if "applied_once" not in columns:
+            self.connection.execute(
+                "ALTER TABLE jobs ADD COLUMN applied_once INTEGER NOT NULL DEFAULT 0"
+            )
+        # Vanhoissa versioissa oli vain Haettu-tila, ei erillistä hakupäivää.
+        # applied_once säilyttää vanhat merkinnät historiassa myös silloin, jos
+        # käyttäjä poistaa ilmoituksen myöhemmin tavallisesta listasta.
+        self.connection.execute(
+            "UPDATE jobs SET applied_once = 1 WHERE status = 'applied'"
+        )
         self.connection.execute(
             """
             CREATE TABLE IF NOT EXISTS runs (
@@ -3674,13 +3690,43 @@ class JobDatabase:
             "SELECT * FROM jobs WHERE fingerprint = ?", (fingerprint,)
         ).fetchone()
 
+    def list_applied_jobs(self) -> list[sqlite3.Row]:
+        """Palauta koko hakuhistoria uusimmasta hakupäivästä alkaen."""
+        return self.connection.execute(
+            """
+            SELECT * FROM jobs
+            WHERE applied_once = 1
+            ORDER BY
+                CASE WHEN applied_at IS NULL THEN 1 ELSE 0 END,
+                applied_at DESC,
+                company COLLATE NOCASE,
+                title COLLATE NOCASE
+            """
+        ).fetchall()
+
     def set_status(self, fingerprint: str, status: str) -> None:
         allowed = {"new", "republished", "seen", "applied", "ignored"}
         if status not in allowed:
             raise ValueError(f"Tuntematon tila: {status}")
-        self.connection.execute(
-            "UPDATE jobs SET status = ? WHERE fingerprint = ?", (status, fingerprint)
-        )
+        if status == "applied":
+            self.connection.execute(
+                """
+                UPDATE jobs
+                SET status = ?, applied_at = COALESCE(applied_at, ?),
+                    applied_once = 1
+                WHERE fingerprint = ?
+                """,
+                (
+                    status,
+                    datetime.now().isoformat(timespec="seconds"),
+                    fingerprint,
+                ),
+            )
+        else:
+            self.connection.execute(
+                "UPDATE jobs SET status = ? WHERE fingerprint = ?",
+                (status, fingerprint),
+            )
         self.connection.commit()
 
     def start_run(self) -> int:
@@ -3915,6 +3961,10 @@ class TyopaikkatutkaGUI:
         self.deadline_latest_first: bool | None = None
         self.score_highest_first: bool | None = None
         self.settings_window: Any | None = None
+        self.applied_window: Any | None = None
+        self.applied_tree: Any | None = None
+        self.applied_status_text: Any | None = None
+        self.applied_custom_controls: list[Any] = []
         self.settings_vars: dict[str, Any] = {}
         self.settings_texts: dict[str, Any] = {}
         self.settings_selection_lists: dict[str, Any] = {}
@@ -4376,6 +4426,7 @@ class TyopaikkatutkaGUI:
             self.dark_mode = dark_mode
             self._configure_style()
             self._configure_tree_tags()
+            self.refresh_applied_jobs()
             self._apply_windows_titlebar_theme()
         self.root.after(2000, self._sync_windows_theme)
 
@@ -4384,20 +4435,20 @@ class TyopaikkatutkaGUI:
         root_handles = apply_windows_window_icon(self.root)
         if root_handles is not None:
             self.native_icon_handles[str(self.root)] = root_handles
-        try:
-            if self.settings_window is not None and self.settings_window.winfo_exists():
+        for child_window in (self.settings_window, self.applied_window):
+            try:
+                if child_window is None or not child_window.winfo_exists():
+                    continue
                 apply_windows_titlebar_theme(
-                    self.settings_window,
+                    child_window,
                     self.dark_mode,
                     self.palette,
                 )
-                settings_handles = apply_windows_window_icon(self.settings_window)
-                if settings_handles is not None:
-                    self.native_icon_handles[str(self.settings_window)] = (
-                        settings_handles
-                    )
-        except self.tk.TclError:
-            pass
+                child_handles = apply_windows_window_icon(child_window)
+                if child_handles is not None:
+                    self.native_icon_handles[str(child_window)] = child_handles
+            except self.tk.TclError:
+                continue
 
     def _build_ui(self) -> None:
         header = self.ttk.Frame(self.root, padding=(24, 20, 24, 10))
@@ -4430,6 +4481,7 @@ class TyopaikkatutkaGUI:
             ("Avaa ilmoitus", self.open_selected),
             ("Lähdelinkit", self.show_selected_source_links),
             ("Merkitse haetuksi", lambda: self.set_selected_status("applied")),
+            ("Haetut työpaikat", self.open_applied_jobs),
             ("Poista listasta", lambda: self.set_selected_status("ignored")),
             ("Avaa asetukset", self.open_settings),
         ):
@@ -5719,6 +5771,184 @@ class TyopaikkatutkaGUI:
         if row:
             self.show_source_links(row)
 
+    def _close_applied_jobs(self) -> None:
+        window = self.applied_window
+        self.applied_window = None
+        self.applied_tree = None
+        self.applied_status_text = None
+        for control in self.applied_custom_controls:
+            if control in self.custom_controls:
+                self.custom_controls.remove(control)
+        self.applied_custom_controls = []
+        if window is None:
+            return
+        try:
+            window.destroy()
+        except self.tk.TclError:
+            pass
+
+    def _applied_selected_id(self) -> str | None:
+        if self.applied_tree is None:
+            return None
+        try:
+            selection = self.applied_tree.selection()
+        except self.tk.TclError:
+            return None
+        return selection[0] if selection else None
+
+    def open_applied_selected(self) -> None:
+        fingerprint = self._applied_selected_id()
+        if not fingerprint:
+            self.messagebox.showinfo(
+                APP_NAME,
+                "Valitse ensin haettu työpaikka.",
+                parent=self.applied_window or self.root,
+            )
+            return
+        database = JobDatabase()
+        try:
+            row = database.get_job(fingerprint)
+        finally:
+            database.close()
+        if row:
+            webbrowser.open(row["url"])
+
+    def refresh_applied_jobs(self) -> None:
+        tree = self.applied_tree
+        if tree is None:
+            return
+        try:
+            for item in tree.get_children():
+                tree.delete(item)
+        except self.tk.TclError:
+            return
+
+        database = JobDatabase()
+        try:
+            rows = database.list_applied_jobs()
+        finally:
+            database.close()
+
+        for row in rows:
+            tree.insert(
+                "",
+                "end",
+                iid=row["fingerprint"],
+                values=(
+                    row["company"] or "Tuntematon työnantaja",
+                    row["title"],
+                    format_job_date(row["applied_at"]) or "Ei tallennettu",
+                ),
+                tags=("applied",),
+            )
+        tree.tag_configure(
+            "applied",
+            background=self.palette["applied_background"],
+            foreground=self.palette["applied_foreground"],
+        )
+        if self.applied_status_text is not None:
+            self.applied_status_text.set(
+                f"Näytetään {len(rows)} haettua työpaikkaa"
+            )
+
+    def open_applied_jobs(self) -> None:
+        try:
+            if self.applied_window is not None and self.applied_window.winfo_exists():
+                self.refresh_applied_jobs()
+                self.applied_window.lift()
+                self.applied_window.focus_force()
+                return
+        except self.tk.TclError:
+            self.applied_window = None
+
+        window = self.tk.Toplevel(self.root)
+        self.applied_window = window
+        self._apply_application_icon(window)
+        window.title(f"Haetut työpaikat – {APP_NAME} {APP_VERSION}")
+        window.geometry("820x540")
+        window.minsize(680, 420)
+        window.configure(bg=self.palette["background"])
+        window.transient(self.root)
+        window.protocol("WM_DELETE_WINDOW", self._close_applied_jobs)
+
+        body = self.ttk.Frame(window, padding=(22, 18))
+        body.pack(fill="both", expand=True)
+
+        self.ttk.Label(
+            body,
+            text="Haetut työpaikat",
+            style="Title.TLabel",
+        ).pack(anchor="w")
+        self.ttk.Label(
+            body,
+            text=(
+                "Näet tässä työnantajan, työtehtävän ja päivän, jolloin paikka "
+                "merkittiin haetuksi."
+            ),
+            style="Sub.TLabel",
+        ).pack(anchor="w", pady=(4, 14))
+
+        toolbar = self.ttk.Frame(body)
+        toolbar.pack(fill="x", pady=(0, 10))
+        open_button = self._rounded_button(
+            toolbar,
+            text="Avaa ilmoitus",
+            command=self.open_applied_selected,
+        )
+        self.applied_custom_controls.append(open_button)
+        open_button.pack(side="left")
+        close_button = self._rounded_button(
+            toolbar,
+            text="Sulje",
+            command=self._close_applied_jobs,
+        )
+        self.applied_custom_controls.append(close_button)
+        close_button.pack(side="right")
+
+        table_frame = self.ttk.Frame(body, style="Card.TFrame", padding=1)
+        table_frame.pack(fill="both", expand=True)
+        columns = ("company", "title", "applied_at")
+        tree = self.ttk.Treeview(
+            table_frame,
+            columns=columns,
+            show="headings",
+            selectmode="browse",
+        )
+        self.applied_tree = tree
+        for column, heading, width in (
+            ("company", "Työnantaja", 230),
+            ("title", "Työtehtävä", 390),
+            ("applied_at", "Hakupäivä", 130),
+        ):
+            tree.heading(column, text=heading)
+            tree.column(
+                column,
+                width=width,
+                minwidth=100,
+                anchor="center" if column == "applied_at" else "w",
+            )
+        scrollbar = self.ttk.Scrollbar(
+            table_frame,
+            orient="vertical",
+            command=tree.yview,
+        )
+        tree.configure(yscrollcommand=scrollbar.set)
+        tree.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+        tree.bind("<Double-1>", lambda event: self.open_applied_selected())
+        tree.bind("<Return>", lambda event: self.open_applied_selected())
+
+        self.applied_status_text = self.tk.StringVar(value="")
+        self.ttk.Label(
+            body,
+            textvariable=self.applied_status_text,
+            style="Sub.TLabel",
+        ).pack(anchor="w", pady=(10, 0))
+
+        self.refresh_applied_jobs()
+        if sys.platform.startswith("win"):
+            self.root.after(50, self._apply_windows_titlebar_theme)
+
     def set_status(self, fingerprint: str, status: str) -> None:
         database = JobDatabase()
         try:
@@ -5726,6 +5956,11 @@ class TyopaikkatutkaGUI:
         finally:
             database.close()
         self.refresh_jobs()
+        try:
+            if self.applied_window is not None and self.applied_window.winfo_exists():
+                self.refresh_applied_jobs()
+        except self.tk.TclError:
+            self.applied_window = None
 
     def set_selected_status(self, status: str) -> None:
         fingerprint = self.selected_id()
